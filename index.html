@@ -2,9 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>إيثاق — لوحة المهام</title>
+<title>مكتبي — لوحة العمل</title>
 <style>
 :root{
   --coral:#D1F8EF;
@@ -2603,6 +2603,518 @@ html[data-theme="dark"] .site-footer span:first-child{color:#F4F7F9!important}
   .pinned-head small{margin-right:0}
 }
 
+
+/* =========================================================
+   إثاق — readability + mobile layout v18
+   ========================================================= */
+
+/* System font stack close to Apple/SF on Apple devices */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+body,
+button,input,textarea,select{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Tahoma,Arial,sans-serif!important;
+}
+
+/* Make EVERYTHING substantially more readable */
+body{font-size:20px!important;line-height:1.65!important}
+.nav-btn{font-size:15px!important;min-height:47px!important}
+.nav-head{font-size:12px!important}
+.brand-line{font-size:18px!important}
+.institute-name{font-size:23px!important}
+.group-head h2{font-size:19px!important}
+.group-head p{font-size:12px!important}
+.group-badge{font-size:10px!important}
+.card-title h3{font-size:16px!important}
+.card-title p{font-size:11.5px!important}
+.card-count{font-size:11px!important;min-width:32px!important;height:29px!important}
+.card-action,.mini{font-size:11.5px!important}
+.task-name{font-size:16px!important;line-height:1.55!important}
+.task-note{font-size:12px!important}
+.tag{font-size:10px!important;padding:4px 7px!important}
+.page-head h2,.history-head h2,.done-chooser-head h2,.done-result-head h2{font-size:22px!important}
+.page-head p,.history-head p,.done-chooser-head p,.done-result-head p{font-size:12px!important}
+.field label{font-size:12px!important}
+.field input,.field textarea,.field select{font-size:16px!important;line-height:1.4!important}
+.btn{font-size:12.5px!important}
+.metric b{font-size:29px!important}
+.metric span{font-size:12px!important}
+.employee-jump b{font-size:14px!important}
+.employee-jump small,.employee-jump .counts{font-size:10.5px!important}
+.employee-box-head h3{font-size:13px!important}
+.reminder h4{font-size:14px!important}
+.reminder p{font-size:11px!important}
+.remain-badge{font-size:10px!important}
+.customizer-page-card h3{font-size:18px!important}
+.custom-page-badge{font-size:11px!important}
+.custom-page-stats span{font-size:11px!important}
+.custom-page-stats b{font-size:15px!important}
+.custom-page-actions .mini{font-size:11.5px!important}
+
+/* iOS Safari zoom prevention: editable controls must stay >=16px */
+input,textarea,select,
+.search-drop .search input,
+.quick-add input,
+.quick-delegate input,
+.employee-side-head input,
+.history-date-input,
+.history-year-input{
+  font-size:16px!important;
+}
+
+/* Stronger top utilities */
+.top-actions{display:flex;align-items:center;gap:9px}
+.top-utilities{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:43px!important;
+  height:43px!important;
+  flex:0 0 43px;
+}
+#searchBtn{font-size:30px!important}
+#themeBtn{font-size:22px!important}
+.mobile-menu{font-size:22px!important}
+
+/* Date keeps the correct place beside search/theme */
+.top-date{
+  min-width:205px!important;
+  min-height:43px!important;
+  padding:6px 11px!important;
+}
+.top-date span{font-size:10.5px!important}
+.top-date small{font-size:9px!important}
+
+/* More generous spacing between cards */
+.home-six{gap:18px!important}
+.group{margin-bottom:18px!important}
+.card-body{padding:0 10px 10px!important}
+.task-list{gap:8px!important}
+.task{padding:10px 11px!important}
+
+/* Mobile: menu button at FAR RIGHT, utilities at FAR LEFT */
+@media(max-width:900px){
+  .topbar{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:10px!important;
+  }
+  .site-heading-card{
+    width:100%!important;
+    max-width:none!important;
+    text-align:center!important;
+  }
+  .top-actions{
+    width:100%!important;
+    display:flex!important;
+    flex-direction:row!important;
+    justify-content:space-between!important;
+    align-items:center!important;
+    direction:rtl!important;
+  }
+  .mobile-menu{
+    display:inline-flex!important;
+    order:0!important;
+    margin:0!important;
+  }
+  .top-utilities{
+    order:1!important;
+    margin-right:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    direction:rtl!important;
+  }
+
+  /* Drawer opens from the RIGHT on mobile */
+  .sidebar{
+    right:0!important;
+    left:auto!important;
+    transform:translateX(103%)!important;
+    width:min(330px,90vw)!important;
+  }
+  .sidebar.open{transform:translateX(0)!important}
+}
+
+@media(max-width:650px){
+  body{font-size:18px!important}
+  .main{padding:10px 9px 28px!important}
+  .site-heading-card{padding:11px 12px!important}
+  .institute-name{font-size:19px!important}
+
+  /* Keep date/search/theme together on one row, left side */
+  .top-actions{
+    flex-wrap:nowrap!important;
+  }
+  .top-utilities{
+    min-width:0!important;
+    max-width:calc(100% - 52px)!important;
+    justify-content:flex-start!important;
+  }
+  .top-date{
+    min-width:0!important;
+    width:auto!important;
+    max-width:190px!important;
+    overflow:hidden!important;
+  }
+  .top-date span,.top-date small{
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  /* Search field always stays within viewport */
+  .search-drop{
+    width:100%!important;
+  }
+  .search-drop .search{
+    min-width:0!important;
+  }
+
+  .overview{gap:8px!important}
+  .metric{min-height:96px!important}
+  .metric b{font-size:26px!important}
+  .metric span{font-size:11px!important}
+  .home-six{gap:14px!important}
+}
+
+@media(max-width:430px){
+  .top-date{max-width:160px!important}
+  #searchBtn{font-size:28px!important}
+  #themeBtn{font-size:21px!important}
+  .mobile-menu{font-size:21px!important}
+  .nav-btn{font-size:14px!important}
+  .task-name{font-size:15px!important}
+}
+
+/* Improve focus/tap feel on touch screens */
+@media(pointer:coarse){
+  button,.nav-btn,.card-action,.mini,.check,.priority,.pin-toggle,.critical-toggle{
+    min-height:36px;
+  }
+  .task-more{width:34px!important;height:34px!important}
+}
+
+
+/* =========================================================
+   FINAL — readability, persistence UI, cross-browser fallbacks
+   ========================================================= */
+
+/* Fallbacks before modern color-mix declarations */
+:focus-visible{
+  outline:3px solid #A8CEE8;
+  outline-offset:2px;
+}
+.task:hover{border-color:#A9C9DE}
+.card:hover{border-color:#9BC4DD}
+.btn.danger{border-color:#D3A9B2}
+
+/* Final font sizing pass — larger and more comfortable */
+body{font-size:20px!important}
+.brand-line{font-size:19px!important}
+.nav-btn{font-size:15.5px!important}
+.nav-head{font-size:12px!important}
+.institute-name{font-size:23px!important}
+.metric b{font-size:30px!important}
+.metric span{font-size:12.5px!important}
+.group-head h2{font-size:20px!important}
+.group-head p{font-size:12.5px!important}
+.card-title h3{font-size:16px!important}
+.card-title p{font-size:12px!important}
+.task-name{font-size:16px!important}
+.task-note{font-size:12px!important}
+.tag{font-size:10px!important}
+.page-head h2,.history-head h2,.done-chooser-head h2,.done-result-head h2{font-size:22px!important}
+.page-head p,.history-head p,.done-chooser-head p,.done-result-head p{font-size:12.5px!important}
+.reminder h4{font-size:14px!important}
+.reminder p{font-size:11px!important}
+.customizer-page-card h3{font-size:18px!important}
+.custom-page-stats span{font-size:11.5px!important}
+.custom-page-stats b{font-size:15.5px!important}
+.field label{font-size:12px!important}
+.btn,.card-action,.mini{font-size:11.5px!important}
+
+/* Comfortable vertical rhythm */
+.main{padding-bottom:34px!important}
+.overview{gap:10px!important;margin-bottom:18px!important}
+.group{margin-bottom:18px!important}
+.home-six{gap:18px!important}
+.task-list{gap:8px!important}
+.task{padding:11px 12px!important}
+
+/* Mobile typing: keep controls at 16px+ so Safari never auto-zooms */
+@media(max-width:900px){
+  input,textarea,select,
+  .search-drop .search input,
+  .quick-add input,
+  .quick-delegate input,
+  .employee-side-head input,
+  .history-date-input,
+  .history-year-input{
+    font-size:16px!important;
+  }
+}
+@media(max-width:650px){
+  body{font-size:18px!important}
+  .brand-line{font-size:17px!important}
+  .nav-btn{font-size:14.5px!important}
+  .institute-name{font-size:19px!important}
+  .metric b{font-size:27px!important}
+  .metric span{font-size:11.5px!important}
+  .task-name{font-size:15.5px!important}
+  .card-title h3{font-size:15px!important}
+}
+
+
+/* =========================================================
+   إثاق — Final visual balance pass
+   ========================================================= */
+
+/* One coherent typography scale */
+:root{
+  --fs-xs:12px;
+  --fs-sm:13px;
+  --fs-md:14px;
+  --fs-lg:16px;
+  --fs-xl:20px;
+  --fs-2xl:24px;
+}
+body{font-size:var(--fs-md)!important;line-height:1.6!important}
+button,input,textarea,select{line-height:1.45}
+.nav-btn{font-size:var(--fs-md)!important}
+.nav-head{font-size:var(--fs-xs)!important}
+.brand-line{font-size:17px!important}
+.institute-name{font-size:22px!important}
+.metric b{font-size:28px!important}
+.metric span{font-size:13px!important}
+.group-head h2{font-size:18px!important}
+.group-head p{font-size:13px!important}
+.group-badge{font-size:11px!important}
+.card-title h3{font-size:15px!important}
+.card-title p{font-size:12px!important}
+.card-count{font-size:11px!important}
+.card-action,.mini{font-size:12px!important}
+.task-name{font-size:15px!important}
+.task-note{font-size:12px!important}
+.tag{font-size:10px!important}
+.page-head h2,.history-head h2,.done-chooser-head h2,.done-result-head h2{font-size:21px!important}
+.page-head p,.history-head p,.done-chooser-head p,.done-result-head p{font-size:13px!important}
+.field label{font-size:12px!important}
+.field input,.field textarea,.field select{font-size:16px!important}
+.btn{font-size:13px!important}
+.reminder h4{font-size:14px!important}
+.reminder p{font-size:12px!important}
+.remain-badge{font-size:10px!important}
+.customizer-page-card h3{font-size:17px!important}
+.custom-page-stats span{font-size:12px!important}
+.custom-page-stats b{font-size:15px!important}
+.site-footer span:first-child{font-size:13px!important}
+
+/* Prevent oversized browser zoom layouts from breaking widths */
+.main{min-width:0!important}
+.card,.group,.page-card,.employee-dashboard,.delegate-dashboard{min-width:0!important}
+.task-content,.card-title,.reminder-main{min-width:0!important}
+
+/* Pinned: 4 tasks per row, priority order already comes from sorted() */
+.pinned-zone>.task-list{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  align-items:stretch;
+}
+.pinned-zone>.task-list>.task{
+  height:100%;
+  min-width:0;
+  flex-wrap:wrap;
+}
+.pinned-zone>.task-list>.task .task-content{flex-basis:calc(100% - 56px)}
+.pinned-zone>.task-list>.task .meta{width:100%}
+
+/* Reminder page: square calendar + larger list */
+.reminder-layout{
+  grid-template-columns:minmax(420px,520px) minmax(520px,1fr)!important;
+  gap:18px!important;
+  align-items:start!important
+}
+.calendar{
+  width:100%;
+  aspect-ratio:1/1;
+  min-height:0!important;
+  display:flex;
+  flex-direction:column;
+  padding:12px!important;
+}
+.calendar-table{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+.weekdays{flex:0 0 auto}
+.cal-grid{
+  flex:1;
+  grid-template-rows:repeat(6,minmax(0,1fr));
+}
+.day{
+  width:100%;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  border-radius:8px!important;
+  padding:6px!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:right;
+}
+.day-markers{
+  display:flex;
+  gap:4px;
+  flex-wrap:wrap;
+  align-items:center;
+  min-height:10px;
+}
+.cal-marker{
+  width:8px;height:8px;border-radius:50%;
+  display:inline-block;
+}
+.cal-marker.reminder{background:#79B7DC}
+.cal-marker.reminder.soon{background:#D5A853}
+.cal-marker.reminder.due{background:#B85F70}
+.cal-marker.task.urgent{background:#3674B5}
+.cal-marker.task.routine{background:#578FCA}
+.cal-marker.task.week{background:#79B7DC}
+.cal-marker.task.delegated{background:#467FBF}
+.cal-marker.task.general{background:#A1E3F9}
+.day.has-events{background:#F1F8FC!important}
+html[data-theme="dark"] .day.has-events{background:#314A5A!important}
+.day-more{
+  align-self:flex-end;
+  font-size:9px;
+  color:#3674B5;
+  font-weight:700;
+}
+.legend-dot{
+  width:8px;height:8px;border-radius:50%;
+  display:inline-block;margin-left:4px
+}
+.legend-dot.reminder{background:#79B7DC}
+.legend-dot.task{background:#3674B5}
+
+/* Larger reminder list */
+.reminder-list-card{
+  min-height:620px!important;
+  padding:14px!important;
+}
+.reminder-list-heading{
+  padding:14px 16px!important;
+  margin-bottom:12px!important;
+}
+.reminder-list-heading h2{font-size:19px!important}
+.reminder-list-heading p{font-size:12px!important}
+.reminder-list{gap:9px!important}
+.reminder{
+  padding:12px 13px!important;
+  border-radius:13px!important;
+}
+.reminder-main{flex:1}
+.reminder-kind{
+  display:inline-block;
+  margin-bottom:4px;
+  padding:2px 7px;
+  border-radius:999px;
+  background:#DDECF7;
+  color:#35668C;
+  font-size:9px;
+  font-weight:700;
+}
+.reminder-kind.task-kind{background:#E8F2F8;color:#2B628B}
+.reminder-trash{
+  color:#A44E62!important;
+  border-color:#D9AAB4!important;
+  background:#FAEFF2!important
+}
+.reminder-trash:hover{background:#B85F70!important;color:#fff!important}
+.task-state.urgent{background:#3674B5}
+.task-state.routine{background:#578FCA}
+.task-state.week{background:#79B7DC}
+.task-state.delegated{background:#467FBF}
+.calendar-focused{
+  outline:3px solid #3674B5!important;
+  outline-offset:2px;
+  background:#EAF4FA!important;
+}
+html[data-theme="dark"] .calendar-focused{background:#314A5A!important}
+
+/* Alert / notification controls */
+.reminder-notice{
+  padding:13px 14px!important;
+  min-height:62px;
+  background:#DCECF8!important;
+  border-color:#AFCFE4!important;
+  color:#214E73!important;
+}
+html[data-theme="dark"] .reminder-notice{
+  background:#29475D!important;
+  border-color:#42677F!important;
+  color:#F4FAFD!important;
+}
+.notice-copy{display:flex;align-items:center;gap:10px}
+.notice-copy>div{display:flex;flex-direction:column}
+.notice-copy b{font-size:15px!important}
+.notice-copy span{font-size:12px!important}
+.notice-icon{
+  width:34px;height:34px;border-radius:10px;
+  display:grid;place-items:center;
+  background:#3674B5;color:#fff;
+  font-size:17px;font-weight:800
+}
+.reminder-notice-btn{
+  min-height:39px;
+  border-radius:10px;
+  padding:0 12px;
+  border:1px solid transparent;
+  font-size:12px;
+  font-weight:700
+}
+.reminder-notice-btn.enable{
+  background:#EEF6FB;
+  color:#2C648F;
+  border-color:#B7D4E7;
+}
+.reminder-notice-btn.add{
+  background:#3674B5;
+  color:#fff;
+  border-color:#3674B5;
+}
+
+/* Make top calendar month block legible, not oversized */
+.calendar-month-block{padding:8px 10px!important}
+.calendar-month-block h3{font-size:15px!important}
+.calendar-hijri-month{font-size:11px!important}
+
+/* Home spacing stays comfortable */
+.home-six{gap:16px!important}
+.group{margin-bottom:16px!important}
+
+/* Responsive typography/layout */
+@media(max-width:1280px){
+  .pinned-zone>.task-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .reminder-layout{grid-template-columns:1fr!important}
+  .calendar{max-width:620px;margin-inline:auto}
+}
+@media(max-width:760px){
+  body{font-size:14px!important}
+  .pinned-zone>.task-list{grid-template-columns:1fr!important}
+  .reminder-notice{align-items:flex-start!important;flex-wrap:wrap!important}
+  .reminder-notice .spacer{display:none}
+  .reminder-notice-btn{flex:1;min-width:170px}
+  .calendar{aspect-ratio:auto!important}
+  .calendar-table{overflow-x:auto}
+  .weekdays,.cal-grid{min-width:560px}
+  .cal-grid{height:430px}
+}
+
 </style>
 </head>
 <body>
@@ -2610,7 +3122,7 @@ html[data-theme="dark"] .site-footer span:first-child{color:#F4F7F9!important}
 <div class="app">
   <aside class="sidebar" id="sidebar">
     <div class="brand brand-simple">
-      <div class="brand-line">لوحة العمل والمتابعة</div>
+      <div class="brand-line">إيثاق - لوحة المهام</div>
     </div>
 
     <div class="nav-group">
@@ -2662,9 +3174,11 @@ html[data-theme="dark"] .site-footer span:first-child{color:#F4F7F9!important}
       </div>
       <div class="top-actions">
         <button class="icon-btn mobile-menu" id="mobileMenu" title="القائمة">☰</button>
-        <div class="top-date" id="dateChip"></div>
-        <button class="icon-btn" id="searchBtn" title="بحث" aria-label="بحث">⌕</button>
-        <button class="icon-btn" id="themeBtn" title="ليلي / نهاري">☾</button>
+        <div class="top-utilities">
+          <div class="top-date" id="dateChip"></div>
+          <button class="icon-btn" id="searchBtn" title="بحث" aria-label="بحث">⌕</button>
+          <button class="icon-btn" id="themeBtn" title="ليلي / نهاري">☾</button>
+        </div>
       </div>
     </header>
 
@@ -2912,6 +3426,28 @@ html[data-theme="dark"] .site-footer span:first-child{color:#F4F7F9!important}
 const KEY="personal_workdesk_v3";
 const OLD_KEYS=["personal_workdesk_v2","personal_workdesk_v1"];
 const THEME_KEY="personal_workdesk_theme_v1";
+const SYNC_CHANNEL="ithaq_workdesk_sync_v1";
+let syncChannel=null;
+try{
+  if("BroadcastChannel" in window){
+    syncChannel=new BroadcastChannel(SYNC_CHANNEL);
+    syncChannel.onmessage=ev=>{
+      if(ev?.data?.type==="state-updated")render();
+      if(ev?.data?.type==="theme-updated"){
+        document.documentElement.dataset.theme=localStorage.getItem(THEME_KEY)||"light";
+        syncThemeBtn();
+      }
+    };
+  }
+}catch{}
+window.addEventListener("storage",ev=>{
+  if(ev.key===KEY)render();
+  if(ev.key===THEME_KEY){
+    document.documentElement.dataset.theme=localStorage.getItem(THEME_KEY)||"light";
+    syncThemeBtn();
+  }
+});
+
 
 let view="home";
 let openQuick=null;
@@ -2980,8 +3516,21 @@ function read(){
   }catch{}
   return defaultData()
 }
-function write(d){localStorage.setItem(KEY,JSON.stringify(d))}
-function mutate(fn){const d=read();fn(d);write(d);render()}
+function write(d){
+  localStorage.setItem(KEY,JSON.stringify(d));
+  try{syncChannel?.postMessage({type:"state-updated",at:Date.now()})}catch{}
+}
+function mutate(fn){
+  const d=read();
+  fn(d);
+  write(d);
+  render();
+}
+function ensurePersistentState(){
+  if(!localStorage.getItem(KEY)){
+    write(defaultData());
+  }
+}
 
 function normalizeTask(t){
   return {
@@ -3208,18 +3757,57 @@ function reminderCard(r){
   const st=reminderState(r);
   const when=r.time?`${r.date} · ${r.time}`:r.date;
   const label=st==="due"?"حان الموعد":st==="soon"?"خلال 24 ساعة":st==="past"?"فات الموعد":"قادم";
-  return `<article class="reminder ${st}">
+  return `<article class="reminder ${st}" data-reminder-row="${esc(r.id)}" data-list-date="${esc(r.date)}">
     <span class="reminder-state"></span>
-    <div><h4>${esc(r.title)}</h4><p>${esc(when)} · ${label}${r.note?` · ${esc(r.note)}`:""}</p><span class="remain-badge">${esc(reminderRemainingLabel(r))}</span></div>
+    <div class="reminder-main">
+      <span class="reminder-kind">تذكير</span>
+      <h4>${esc(r.title)}</h4>
+      <p>${esc(when)} · ${label}${r.note?` · ${esc(r.note)}`:""}</p>
+      <span class="remain-badge">${esc(reminderRemainingLabel(r))}</span>
+    </div>
     <div class="actions">
       <button class="mini" data-action="edit-reminder" data-id="${esc(r.id)}">تعديل</button>
+      <button class="mini reminder-trash" data-action="quick-delete-reminder" data-id="${esc(r.id)}" title="حذف التذكير">⌫</button>
       <button class="mini" data-action="done-reminder" data-id="${esc(r.id)}">✓</button>
     </div>
   </article>`
 }
+function datedTaskReminderCard(t){
+  const when=t.time?`${t.date} · ${t.time}`:t.date;
+  return `<article class="reminder task-reminder-row" data-task-row="${esc(t.id)}" data-list-date="${esc(t.date)}">
+    <span class="reminder-state task-state ${esc(t.type)}"></span>
+    <div class="reminder-main">
+      <span class="reminder-kind task-kind">مهمة</span>
+      <h4>${esc(t.title)}</h4>
+      <p>${esc(when)}${t.person?` · ${esc(t.person)}`:""}${t.note?` · ${esc(t.note)}`:""}</p>
+      <span class="remain-badge">${esc(dueLabel(t.date))}</span>
+    </div>
+    <div class="actions">
+      <button class="mini" data-action="edit-task" data-id="${esc(t.id)}">تعديل</button>
+      <button class="mini reminder-trash" data-action="quick-delete-task" data-id="${esc(t.id)}" title="حذف المهمة">⌫</button>
+    </div>
+  </article>`
+}
+function combinedUpcomingItems(limit=30){
+  const rItems=activeReminders().map(r=>({kind:"reminder",dateTime:reminderDateTime(r),item:r}));
+  const tItems=tasks().filter(t=>t.date&&!isDone(t)).map(t=>{
+    const [y,m,d]=t.date.split("-").map(Number);
+    const [hh,mm]=(t.time||"23:59").split(":").map(Number);
+    return {kind:"task",dateTime:new Date(y,m-1,d,hh||0,mm||0),item:t};
+  });
+  return [...rItems,...tItems].sort((a,b)=>a.dateTime-b.dateTime).slice(0,limit);
+}
+function combinedUpcomingHTML(limit=30){
+  const list=combinedUpcomingItems(limit);
+  return list.length?list.map(x=>x.kind==="reminder"?reminderCard(x.item):datedTaskReminderCard(x.item)).join(""):`<div class="empty">لا توجد تذكيرات أو مهام مؤرخة قادمة.</div>`;
+}
+
 function upcomingReminderHTML(limit=4){
   const list=activeReminders().slice(0,limit);
   return list.length?list.map(reminderCard).join(""):`<div class="empty">لا توجد تذكيرات قادمة.</div>`
+}
+function calendarTaskTone(type){
+  return type==="urgent"?"urgent":type==="routine"?"routine":type==="week"?"week":type==="delegated"?"delegated":"general";
 }
 function calendarTaskTone(type){
   return type==="urgent"?"urgent":type==="routine"?"routine":type==="week"?"week":type==="delegated"?"delegated":"general";
@@ -3237,32 +3825,30 @@ function renderCalendar(){
     const dayRem=rem.filter(r=>r.date===iso);
     const dayTasks=datedTasks.filter(t=>t.date===iso);
     const hijriDay=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{day:"numeric"}).format(d);
+    const total=dayRem.length+dayTasks.length;
 
-    const events=[
-      ...dayRem.map(r=>({kind:"reminder",id:r.id,title:r.title,tone:reminderState(r)})),
-      ...dayTasks.map(t=>({kind:"task",id:t.id,title:t.title,tone:calendarTaskTone(t.type)}))
-    ];
+    const markers=[
+      ...dayRem.slice(0,3).map(r=>`<span class="cal-marker reminder ${reminderState(r)}" title="تذكير"></span>`),
+      ...dayTasks.slice(0,4).map(t=>`<span class="cal-marker task ${calendarTaskTone(t.type)}" title="مهمة"></span>`)
+    ].slice(0,6).join("");
 
-    const visible=events.slice(0,3);
-    cells.push(`<div class="day ${d.getMonth()!==month?"other":""} ${iso===todayISO()?"today":""}" data-day="${iso}">
+    cells.push(`<button class="day ${d.getMonth()!==month?"other":""} ${iso===todayISO()?"today":""} ${total?"has-events":""}" data-action="focus-calendar-date" data-day="${iso}" type="button">
       <div class="day-num-wrap"><div class="day-num">${d.getDate()}</div><div class="day-hijri">${hijriDay} هـ</div></div>
-      <div class="calendar-events">
-        ${visible.map(ev=>`<button class="calendar-event ${ev.kind==="task"?"cal-task":"reminder"} ${ev.tone}" data-action="${ev.kind==="task"?"edit-task":"edit-reminder"}" data-id="${esc(ev.id)}" title="${esc(ev.title)}">
-          <span>${ev.kind==="task"?"✓":"◷"}</span><b>${esc(ev.title)}</b>
-        </button>`).join("")}
-        ${events.length>3?`<span class="calendar-more">+${events.length-3}</span>`:""}
-      </div>
-    </div>`)
+      <div class="day-markers">${markers}</div>
+      ${total>6?`<span class="day-more">+${total-6}</span>`:""}
+    </button>`)
   }
 
   const monthName=new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{month:"long",year:"numeric"}).format(first);
-  const hijriMonthName=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{month:"long",year:"numeric"}).format(first);
+  let hijriMonthName=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{month:"long",year:"numeric"}).format(first);
+  hijriMonthName=hijriMonthName.replace(/\s*هـ\s*$/,"").trim();
+
   return `<div class="calendar">
     <div class="cal-head">
       <div class="calendar-month-block">
         <span class="calendar-month-label">ميلادي</span>
         <h3>${monthName}</h3>
-        <div class="calendar-hijri-month"><span>هجري</span>${hijriMonthName}</div>
+        <div class="calendar-hijri-month"><span>هجري</span>${hijriMonthName} هـ</div>
       </div>
       <span class="spacer"></span>
       <button class="cal-nav" data-action="cal-prev">‹</button>
@@ -3272,7 +3858,10 @@ function renderCalendar(){
       <div class="weekdays"><div>أحد</div><div>اثن</div><div>ثلا</div><div>أرب</div><div>خمي</div><div>جمع</div><div>سبت</div></div>
       <div class="cal-grid">${cells.join("")}</div>
     </div>
-    <div class="calendar-legend"><span>✓ مهمة</span><span>◷ تذكير</span><span>الرقم الكبير ميلادي · هـ هجري</span></div>
+    <div class="calendar-legend">
+      <span><i class="legend-dot reminder"></i> تذكير</span>
+      <span><i class="legend-dot task"></i> مهمة</span>
+    </div>
   </div>`
 }
 function notificationCount(){
@@ -3446,7 +4035,7 @@ function renderHome(){
     ${pinnedZoneHTML(["urgent","routine","week","delegated","general"])}
     <section class="group">
       <div class="group-head">
-        <div><h2>لوحة العمل</h2><p></p></div>
+        <div><h2>لوحة العمل</h2></div>
         <span class="group-badge">${urgent.length+routine.filter(t=>!isDone(t)).length+week.length+followCount+deleg.length+activeReminders().length} عنصر</span>
       </div>
 
@@ -3482,7 +4071,7 @@ function renderHome(){
         <section class="card" data-tone="reminder">
           <div class="card-head">
             <span class="card-tone">◷</span>
-            <div class="card-title"><h3>التذكيرات</h3><p>التاريخ والساعة اختياريان حسب حاجتك</p></div>
+            <div class="card-title"><h3>التذكيرات</h3></div>
             <span class="card-count">${activeReminders().length}</span>
             <button class="card-action" data-action="open-reminder">＋</button>
             <button class="card-action" data-view-jump="reminders">التقويم</button>
@@ -3596,16 +4185,25 @@ function renderSplitTaskPage(type,title,sub,tone,icon,extra=""){
 }
 function renderReminders(){
   const notices=notificationCount();
-  $("#content").innerHTML=`<div class="page">
-    <div class="notice-bar"><b>التنبيهات</b><span>${notices?`لديك ${notices} تذكير قريب أو حان موعده.`:"لا توجد تنبيهات حالياً."}</span><span class="spacer"></span><button class="mini" data-action="enable-notifications">تفعيل إشعارات المتصفح</button><button class="mini" data-action="open-reminder">＋ تذكير</button></div>
+  const combinedCount=combinedUpcomingItems(9999).length;
+  $("#content").innerHTML=`<div class="page reminders-page">
+    <div class="notice-bar reminder-notice">
+      <div class="notice-copy">
+        <span class="notice-icon">!</span>
+        <div><b>التنبيهات</b><span>${notices?`لديك ${notices} تذكير قريب أو حان موعده.`:"لا توجد تنبيهات عاجلة حالياً."}</span></div>
+      </div>
+      <span class="spacer"></span>
+      <button class="reminder-notice-btn enable" data-action="enable-notifications">◉ تفعيل إشعارات المتصفح</button>
+      <button class="reminder-notice-btn add" data-action="open-reminder">＋ إضافة تذكير</button>
+    </div>
     <div class="reminder-layout">
       ${renderCalendar()}
       <section class="page-card reminder-list-card">
         <div class="reminder-list-heading">
-          <div><span>◷</span><div><h2>التذكيرات القادمة</h2><p>مرتبة حسب أقرب موعد.</p></div></div>
-          <strong>${activeReminders().length}</strong>
+          <div><span>◷</span><div><h2>التذكيرات والمهام القادمة</h2><p>اختاري يوماً من التقويم لتحديد عناصره هنا.</p></div></div>
+          <strong>${combinedCount}</strong>
         </div>
-        <div class="reminder-list">${upcomingReminderHTML(30)}</div>
+        <div class="reminder-list" id="reminderCombinedList">${combinedUpcomingHTML(60)}</div>
       </section>
     </div>
   </div>`
@@ -4271,9 +4869,24 @@ document.addEventListener("click",e=>{
   if(action==="open-reminder")openReminderModal();
   if(action==="edit-reminder"){const r=read().reminders.find(x=>x.id===a.dataset.id);if(r)openReminderModal(r)}
   if(action==="done-reminder")mutate(d=>{const r=d.reminders.find(x=>x.id===a.dataset.id);if(r)r.done=true});
+  if(action==="quick-delete-reminder"){
+    mutate(d=>d.reminders=d.reminders.filter(r=>r.id!==a.dataset.id));
+    showToast("تم حذف التذكير");
+  }
   if(action==="enable-notifications")requestNotifications();
   if(action==="cal-prev"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);render()}
   if(action==="cal-next"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+1,1);render()}
+  if(action==="focus-calendar-date"){
+    const date=a.dataset.day;
+    $$("#reminderCombinedList [data-list-date]").forEach(row=>row.classList.toggle("calendar-focused",row.dataset.listDate===date));
+    const first=document.querySelector(`#reminderCombinedList [data-list-date="${date}"]`);
+    if(first){
+      first.scrollIntoView({behavior:"smooth",block:"center"});
+      showToast("تم تحديد عناصر هذا اليوم في القائمة");
+    }else{
+      showToast("لا توجد عناصر لهذا اليوم");
+    }
+  }
   if(action==="open-employee-modal"){
     $("#employeeModalTitle").textContent="إضافة موظف";
     $("#employeeId").value="";$("#employeeName").value="";$("#employeeSpecialty").value="";
@@ -4304,10 +4917,6 @@ document.addEventListener("click",e=>{
   if(action==="reset-custom-section")mutate(d=>{const p=d.customPages.find(x=>x.id===a.dataset.page),s=p?.sections.find(x=>x.id===a.dataset.section);(s?.tasks||[]).forEach(t=>t.done=false)});
 });
 
-document.addEventListener("click",e=>{
-  const day=e.target.closest("[data-day]");
-  if(day&&!e.target.closest("[data-action]"))openReminderModal(null,day.dataset.day)
-});
 
 document.addEventListener("submit",e=>{
   const dq=e.target.closest("[data-quick-delegate]");
@@ -4379,7 +4988,13 @@ $("#searchClose").onclick=()=>{
   render();
 };
 $("#mobileMenu").onclick=()=>$("#sidebar").classList.toggle("open");
-$("#themeBtn").onclick=()=>{const next=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=next;localStorage.setItem(THEME_KEY,next);syncThemeBtn()};
+$("#themeBtn").onclick=()=>{
+  const next=document.documentElement.dataset.theme==="dark"?"light":"dark";
+  document.documentElement.dataset.theme=next;
+  localStorage.setItem(THEME_KEY,next);
+  try{syncChannel?.postMessage({type:"theme-updated",at:Date.now()})}catch{}
+  syncThemeBtn()
+};
 
 $$(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)o.hidden=true}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){$$(".overlay").forEach(o=>o.hidden=true);$("#sidebar").classList.remove("open");$("#searchDrop").hidden=true}});
@@ -4389,13 +5004,15 @@ function setDateChip(){
   try{
     const now=new Date();
     const greg=new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{weekday:"short",day:"numeric",month:"short",year:"numeric"}).format(now);
-    const hijri=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{day:"numeric",month:"short",year:"numeric"}).format(now);
+    let hijri=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{day:"numeric",month:"short",year:"numeric"}).format(now);
+    hijri=hijri.replace(/\s*هـ\s*$/,"").trim();
     $("#dateChip").innerHTML=`<span>${greg}</span><small>${hijri} هـ</small>`;
   }catch{$("#dateChip").textContent=todayISO()}
 }
 
 /* ---------- Start ---------- */
 migrate();
+ensurePersistentState();
 document.documentElement.dataset.theme=localStorage.getItem(THEME_KEY)||"light";
 syncThemeBtn();
 setDateChip();
