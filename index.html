@@ -2866,255 +2866,6 @@ body{font-size:20px!important}
   .card-title h3{font-size:15px!important}
 }
 
-
-/* =========================================================
-   إثاق — Final visual balance pass
-   ========================================================= */
-
-/* One coherent typography scale */
-:root{
-  --fs-xs:12px;
-  --fs-sm:13px;
-  --fs-md:14px;
-  --fs-lg:16px;
-  --fs-xl:20px;
-  --fs-2xl:24px;
-}
-body{font-size:var(--fs-md)!important;line-height:1.6!important}
-button,input,textarea,select{line-height:1.45}
-.nav-btn{font-size:var(--fs-md)!important}
-.nav-head{font-size:var(--fs-xs)!important}
-.brand-line{font-size:17px!important}
-.institute-name{font-size:22px!important}
-.metric b{font-size:28px!important}
-.metric span{font-size:13px!important}
-.group-head h2{font-size:18px!important}
-.group-head p{font-size:13px!important}
-.group-badge{font-size:11px!important}
-.card-title h3{font-size:15px!important}
-.card-title p{font-size:12px!important}
-.card-count{font-size:11px!important}
-.card-action,.mini{font-size:12px!important}
-.task-name{font-size:15px!important}
-.task-note{font-size:12px!important}
-.tag{font-size:10px!important}
-.page-head h2,.history-head h2,.done-chooser-head h2,.done-result-head h2{font-size:21px!important}
-.page-head p,.history-head p,.done-chooser-head p,.done-result-head p{font-size:13px!important}
-.field label{font-size:12px!important}
-.field input,.field textarea,.field select{font-size:16px!important}
-.btn{font-size:13px!important}
-.reminder h4{font-size:14px!important}
-.reminder p{font-size:12px!important}
-.remain-badge{font-size:10px!important}
-.customizer-page-card h3{font-size:17px!important}
-.custom-page-stats span{font-size:12px!important}
-.custom-page-stats b{font-size:15px!important}
-.site-footer span:first-child{font-size:13px!important}
-
-/* Prevent oversized browser zoom layouts from breaking widths */
-.main{min-width:0!important}
-.card,.group,.page-card,.employee-dashboard,.delegate-dashboard{min-width:0!important}
-.task-content,.card-title,.reminder-main{min-width:0!important}
-
-/* Pinned: 4 tasks per row, priority order already comes from sorted() */
-.pinned-zone>.task-list{
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:10px!important;
-  align-items:stretch;
-}
-.pinned-zone>.task-list>.task{
-  height:100%;
-  min-width:0;
-  flex-wrap:wrap;
-}
-.pinned-zone>.task-list>.task .task-content{flex-basis:calc(100% - 56px)}
-.pinned-zone>.task-list>.task .meta{width:100%}
-
-/* Reminder page: square calendar + larger list */
-.reminder-layout{
-  grid-template-columns:minmax(420px,520px) minmax(520px,1fr)!important;
-  gap:18px!important;
-  align-items:start!important
-}
-.calendar{
-  width:100%;
-  aspect-ratio:1/1;
-  min-height:0!important;
-  display:flex;
-  flex-direction:column;
-  padding:12px!important;
-}
-.calendar-table{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  min-height:0;
-}
-.weekdays{flex:0 0 auto}
-.cal-grid{
-  flex:1;
-  grid-template-rows:repeat(6,minmax(0,1fr));
-}
-.day{
-  width:100%;
-  min-height:0!important;
-  aspect-ratio:auto!important;
-  border-radius:8px!important;
-  padding:6px!important;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  text-align:right;
-}
-.day-markers{
-  display:flex;
-  gap:4px;
-  flex-wrap:wrap;
-  align-items:center;
-  min-height:10px;
-}
-.cal-marker{
-  width:8px;height:8px;border-radius:50%;
-  display:inline-block;
-}
-.cal-marker.reminder{background:#79B7DC}
-.cal-marker.reminder.soon{background:#D5A853}
-.cal-marker.reminder.due{background:#B85F70}
-.cal-marker.task.urgent{background:#3674B5}
-.cal-marker.task.routine{background:#578FCA}
-.cal-marker.task.week{background:#79B7DC}
-.cal-marker.task.delegated{background:#467FBF}
-.cal-marker.task.general{background:#A1E3F9}
-.day.has-events{background:#F1F8FC!important}
-html[data-theme="dark"] .day.has-events{background:#314A5A!important}
-.day-more{
-  align-self:flex-end;
-  font-size:9px;
-  color:#3674B5;
-  font-weight:700;
-}
-.legend-dot{
-  width:8px;height:8px;border-radius:50%;
-  display:inline-block;margin-left:4px
-}
-.legend-dot.reminder{background:#79B7DC}
-.legend-dot.task{background:#3674B5}
-
-/* Larger reminder list */
-.reminder-list-card{
-  min-height:620px!important;
-  padding:14px!important;
-}
-.reminder-list-heading{
-  padding:14px 16px!important;
-  margin-bottom:12px!important;
-}
-.reminder-list-heading h2{font-size:19px!important}
-.reminder-list-heading p{font-size:12px!important}
-.reminder-list{gap:9px!important}
-.reminder{
-  padding:12px 13px!important;
-  border-radius:13px!important;
-}
-.reminder-main{flex:1}
-.reminder-kind{
-  display:inline-block;
-  margin-bottom:4px;
-  padding:2px 7px;
-  border-radius:999px;
-  background:#DDECF7;
-  color:#35668C;
-  font-size:9px;
-  font-weight:700;
-}
-.reminder-kind.task-kind{background:#E8F2F8;color:#2B628B}
-.reminder-trash{
-  color:#A44E62!important;
-  border-color:#D9AAB4!important;
-  background:#FAEFF2!important
-}
-.reminder-trash:hover{background:#B85F70!important;color:#fff!important}
-.task-state.urgent{background:#3674B5}
-.task-state.routine{background:#578FCA}
-.task-state.week{background:#79B7DC}
-.task-state.delegated{background:#467FBF}
-.calendar-focused{
-  outline:3px solid #3674B5!important;
-  outline-offset:2px;
-  background:#EAF4FA!important;
-}
-html[data-theme="dark"] .calendar-focused{background:#314A5A!important}
-
-/* Alert / notification controls */
-.reminder-notice{
-  padding:13px 14px!important;
-  min-height:62px;
-  background:#DCECF8!important;
-  border-color:#AFCFE4!important;
-  color:#214E73!important;
-}
-html[data-theme="dark"] .reminder-notice{
-  background:#29475D!important;
-  border-color:#42677F!important;
-  color:#F4FAFD!important;
-}
-.notice-copy{display:flex;align-items:center;gap:10px}
-.notice-copy>div{display:flex;flex-direction:column}
-.notice-copy b{font-size:15px!important}
-.notice-copy span{font-size:12px!important}
-.notice-icon{
-  width:34px;height:34px;border-radius:10px;
-  display:grid;place-items:center;
-  background:#3674B5;color:#fff;
-  font-size:17px;font-weight:800
-}
-.reminder-notice-btn{
-  min-height:39px;
-  border-radius:10px;
-  padding:0 12px;
-  border:1px solid transparent;
-  font-size:12px;
-  font-weight:700
-}
-.reminder-notice-btn.enable{
-  background:#EEF6FB;
-  color:#2C648F;
-  border-color:#B7D4E7;
-}
-.reminder-notice-btn.add{
-  background:#3674B5;
-  color:#fff;
-  border-color:#3674B5;
-}
-
-/* Make top calendar month block legible, not oversized */
-.calendar-month-block{padding:8px 10px!important}
-.calendar-month-block h3{font-size:15px!important}
-.calendar-hijri-month{font-size:11px!important}
-
-/* Home spacing stays comfortable */
-.home-six{gap:16px!important}
-.group{margin-bottom:16px!important}
-
-/* Responsive typography/layout */
-@media(max-width:1280px){
-  .pinned-zone>.task-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .reminder-layout{grid-template-columns:1fr!important}
-  .calendar{max-width:620px;margin-inline:auto}
-}
-@media(max-width:760px){
-  body{font-size:14px!important}
-  .pinned-zone>.task-list{grid-template-columns:1fr!important}
-  .reminder-notice{align-items:flex-start!important;flex-wrap:wrap!important}
-  .reminder-notice .spacer{display:none}
-  .reminder-notice-btn{flex:1;min-width:170px}
-  .calendar{aspect-ratio:auto!important}
-  .calendar-table{overflow-x:auto}
-  .weekdays,.cal-grid{min-width:560px}
-  .cal-grid{height:430px}
-}
-
 </style>
 </head>
 <body>
@@ -3757,57 +3508,18 @@ function reminderCard(r){
   const st=reminderState(r);
   const when=r.time?`${r.date} · ${r.time}`:r.date;
   const label=st==="due"?"حان الموعد":st==="soon"?"خلال 24 ساعة":st==="past"?"فات الموعد":"قادم";
-  return `<article class="reminder ${st}" data-reminder-row="${esc(r.id)}" data-list-date="${esc(r.date)}">
+  return `<article class="reminder ${st}">
     <span class="reminder-state"></span>
-    <div class="reminder-main">
-      <span class="reminder-kind">تذكير</span>
-      <h4>${esc(r.title)}</h4>
-      <p>${esc(when)} · ${label}${r.note?` · ${esc(r.note)}`:""}</p>
-      <span class="remain-badge">${esc(reminderRemainingLabel(r))}</span>
-    </div>
+    <div><h4>${esc(r.title)}</h4><p>${esc(when)} · ${label}${r.note?` · ${esc(r.note)}`:""}</p><span class="remain-badge">${esc(reminderRemainingLabel(r))}</span></div>
     <div class="actions">
       <button class="mini" data-action="edit-reminder" data-id="${esc(r.id)}">تعديل</button>
-      <button class="mini reminder-trash" data-action="quick-delete-reminder" data-id="${esc(r.id)}" title="حذف التذكير">⌫</button>
       <button class="mini" data-action="done-reminder" data-id="${esc(r.id)}">✓</button>
     </div>
   </article>`
 }
-function datedTaskReminderCard(t){
-  const when=t.time?`${t.date} · ${t.time}`:t.date;
-  return `<article class="reminder task-reminder-row" data-task-row="${esc(t.id)}" data-list-date="${esc(t.date)}">
-    <span class="reminder-state task-state ${esc(t.type)}"></span>
-    <div class="reminder-main">
-      <span class="reminder-kind task-kind">مهمة</span>
-      <h4>${esc(t.title)}</h4>
-      <p>${esc(when)}${t.person?` · ${esc(t.person)}`:""}${t.note?` · ${esc(t.note)}`:""}</p>
-      <span class="remain-badge">${esc(dueLabel(t.date))}</span>
-    </div>
-    <div class="actions">
-      <button class="mini" data-action="edit-task" data-id="${esc(t.id)}">تعديل</button>
-      <button class="mini reminder-trash" data-action="quick-delete-task" data-id="${esc(t.id)}" title="حذف المهمة">⌫</button>
-    </div>
-  </article>`
-}
-function combinedUpcomingItems(limit=30){
-  const rItems=activeReminders().map(r=>({kind:"reminder",dateTime:reminderDateTime(r),item:r}));
-  const tItems=tasks().filter(t=>t.date&&!isDone(t)).map(t=>{
-    const [y,m,d]=t.date.split("-").map(Number);
-    const [hh,mm]=(t.time||"23:59").split(":").map(Number);
-    return {kind:"task",dateTime:new Date(y,m-1,d,hh||0,mm||0),item:t};
-  });
-  return [...rItems,...tItems].sort((a,b)=>a.dateTime-b.dateTime).slice(0,limit);
-}
-function combinedUpcomingHTML(limit=30){
-  const list=combinedUpcomingItems(limit);
-  return list.length?list.map(x=>x.kind==="reminder"?reminderCard(x.item):datedTaskReminderCard(x.item)).join(""):`<div class="empty">لا توجد تذكيرات أو مهام مؤرخة قادمة.</div>`;
-}
-
 function upcomingReminderHTML(limit=4){
   const list=activeReminders().slice(0,limit);
   return list.length?list.map(reminderCard).join(""):`<div class="empty">لا توجد تذكيرات قادمة.</div>`
-}
-function calendarTaskTone(type){
-  return type==="urgent"?"urgent":type==="routine"?"routine":type==="week"?"week":type==="delegated"?"delegated":"general";
 }
 function calendarTaskTone(type){
   return type==="urgent"?"urgent":type==="routine"?"routine":type==="week"?"week":type==="delegated"?"delegated":"general";
@@ -3825,30 +3537,32 @@ function renderCalendar(){
     const dayRem=rem.filter(r=>r.date===iso);
     const dayTasks=datedTasks.filter(t=>t.date===iso);
     const hijriDay=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{day:"numeric"}).format(d);
-    const total=dayRem.length+dayTasks.length;
 
-    const markers=[
-      ...dayRem.slice(0,3).map(r=>`<span class="cal-marker reminder ${reminderState(r)}" title="تذكير"></span>`),
-      ...dayTasks.slice(0,4).map(t=>`<span class="cal-marker task ${calendarTaskTone(t.type)}" title="مهمة"></span>`)
-    ].slice(0,6).join("");
+    const events=[
+      ...dayRem.map(r=>({kind:"reminder",id:r.id,title:r.title,tone:reminderState(r)})),
+      ...dayTasks.map(t=>({kind:"task",id:t.id,title:t.title,tone:calendarTaskTone(t.type)}))
+    ];
 
-    cells.push(`<button class="day ${d.getMonth()!==month?"other":""} ${iso===todayISO()?"today":""} ${total?"has-events":""}" data-action="focus-calendar-date" data-day="${iso}" type="button">
+    const visible=events.slice(0,3);
+    cells.push(`<div class="day ${d.getMonth()!==month?"other":""} ${iso===todayISO()?"today":""}" data-day="${iso}">
       <div class="day-num-wrap"><div class="day-num">${d.getDate()}</div><div class="day-hijri">${hijriDay} هـ</div></div>
-      <div class="day-markers">${markers}</div>
-      ${total>6?`<span class="day-more">+${total-6}</span>`:""}
-    </button>`)
+      <div class="calendar-events">
+        ${visible.map(ev=>`<button class="calendar-event ${ev.kind==="task"?"cal-task":"reminder"} ${ev.tone}" data-action="${ev.kind==="task"?"edit-task":"edit-reminder"}" data-id="${esc(ev.id)}" title="${esc(ev.title)}">
+          <span>${ev.kind==="task"?"✓":"◷"}</span><b>${esc(ev.title)}</b>
+        </button>`).join("")}
+        ${events.length>3?`<span class="calendar-more">+${events.length-3}</span>`:""}
+      </div>
+    </div>`)
   }
 
   const monthName=new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{month:"long",year:"numeric"}).format(first);
-  let hijriMonthName=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{month:"long",year:"numeric"}).format(first);
-  hijriMonthName=hijriMonthName.replace(/\s*هـ\s*$/,"").trim();
-
+  const hijriMonthName=new Intl.DateTimeFormat("ar-SA-u-ca-islamic",{month:"long",year:"numeric"}).format(first);
   return `<div class="calendar">
     <div class="cal-head">
       <div class="calendar-month-block">
         <span class="calendar-month-label">ميلادي</span>
         <h3>${monthName}</h3>
-        <div class="calendar-hijri-month"><span>هجري</span>${hijriMonthName} هـ</div>
+        <div class="calendar-hijri-month"><span>هجري</span>${hijriMonthName}</div>
       </div>
       <span class="spacer"></span>
       <button class="cal-nav" data-action="cal-prev">‹</button>
@@ -3858,10 +3572,7 @@ function renderCalendar(){
       <div class="weekdays"><div>أحد</div><div>اثن</div><div>ثلا</div><div>أرب</div><div>خمي</div><div>جمع</div><div>سبت</div></div>
       <div class="cal-grid">${cells.join("")}</div>
     </div>
-    <div class="calendar-legend">
-      <span><i class="legend-dot reminder"></i> تذكير</span>
-      <span><i class="legend-dot task"></i> مهمة</span>
-    </div>
+    <div class="calendar-legend"><span>✓ مهمة</span><span>◷ تذكير</span><span>الرقم الكبير ميلادي · هـ هجري</span></div>
   </div>`
 }
 function notificationCount(){
@@ -4071,7 +3782,7 @@ function renderHome(){
         <section class="card" data-tone="reminder">
           <div class="card-head">
             <span class="card-tone">◷</span>
-            <div class="card-title"><h3>التذكيرات</h3></div>
+            <div class="card-title"><h3>التذكيرات</h3><p>التاريخ والساعة اختياريان حسب حاجتك</p></div>
             <span class="card-count">${activeReminders().length}</span>
             <button class="card-action" data-action="open-reminder">＋</button>
             <button class="card-action" data-view-jump="reminders">التقويم</button>
@@ -4185,25 +3896,16 @@ function renderSplitTaskPage(type,title,sub,tone,icon,extra=""){
 }
 function renderReminders(){
   const notices=notificationCount();
-  const combinedCount=combinedUpcomingItems(9999).length;
-  $("#content").innerHTML=`<div class="page reminders-page">
-    <div class="notice-bar reminder-notice">
-      <div class="notice-copy">
-        <span class="notice-icon">!</span>
-        <div><b>التنبيهات</b><span>${notices?`لديك ${notices} تذكير قريب أو حان موعده.`:"لا توجد تنبيهات عاجلة حالياً."}</span></div>
-      </div>
-      <span class="spacer"></span>
-      <button class="reminder-notice-btn enable" data-action="enable-notifications">◉ تفعيل إشعارات المتصفح</button>
-      <button class="reminder-notice-btn add" data-action="open-reminder">＋ إضافة تذكير</button>
-    </div>
+  $("#content").innerHTML=`<div class="page">
+    <div class="notice-bar"><b>التنبيهات</b><span>${notices?`لديك ${notices} تذكير قريب أو حان موعده.`:"لا توجد تنبيهات حالياً."}</span><span class="spacer"></span><button class="mini" data-action="enable-notifications">تفعيل إشعارات المتصفح</button><button class="mini" data-action="open-reminder">＋ تذكير</button></div>
     <div class="reminder-layout">
       ${renderCalendar()}
       <section class="page-card reminder-list-card">
         <div class="reminder-list-heading">
-          <div><span>◷</span><div><h2>التذكيرات والمهام القادمة</h2><p>اختاري يوماً من التقويم لتحديد عناصره هنا.</p></div></div>
-          <strong>${combinedCount}</strong>
+          <div><span>◷</span><div><h2>التذكيرات القادمة</h2><p>مرتبة حسب أقرب موعد.</p></div></div>
+          <strong>${activeReminders().length}</strong>
         </div>
-        <div class="reminder-list" id="reminderCombinedList">${combinedUpcomingHTML(60)}</div>
+        <div class="reminder-list">${upcomingReminderHTML(30)}</div>
       </section>
     </div>
   </div>`
@@ -4869,24 +4571,9 @@ document.addEventListener("click",e=>{
   if(action==="open-reminder")openReminderModal();
   if(action==="edit-reminder"){const r=read().reminders.find(x=>x.id===a.dataset.id);if(r)openReminderModal(r)}
   if(action==="done-reminder")mutate(d=>{const r=d.reminders.find(x=>x.id===a.dataset.id);if(r)r.done=true});
-  if(action==="quick-delete-reminder"){
-    mutate(d=>d.reminders=d.reminders.filter(r=>r.id!==a.dataset.id));
-    showToast("تم حذف التذكير");
-  }
   if(action==="enable-notifications")requestNotifications();
   if(action==="cal-prev"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);render()}
   if(action==="cal-next"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+1,1);render()}
-  if(action==="focus-calendar-date"){
-    const date=a.dataset.day;
-    $$("#reminderCombinedList [data-list-date]").forEach(row=>row.classList.toggle("calendar-focused",row.dataset.listDate===date));
-    const first=document.querySelector(`#reminderCombinedList [data-list-date="${date}"]`);
-    if(first){
-      first.scrollIntoView({behavior:"smooth",block:"center"});
-      showToast("تم تحديد عناصر هذا اليوم في القائمة");
-    }else{
-      showToast("لا توجد عناصر لهذا اليوم");
-    }
-  }
   if(action==="open-employee-modal"){
     $("#employeeModalTitle").textContent="إضافة موظف";
     $("#employeeId").value="";$("#employeeName").value="";$("#employeeSpecialty").value="";
@@ -4917,6 +4604,10 @@ document.addEventListener("click",e=>{
   if(action==="reset-custom-section")mutate(d=>{const p=d.customPages.find(x=>x.id===a.dataset.page),s=p?.sections.find(x=>x.id===a.dataset.section);(s?.tasks||[]).forEach(t=>t.done=false)});
 });
 
+document.addEventListener("click",e=>{
+  const day=e.target.closest("[data-day]");
+  if(day&&!e.target.closest("[data-action]"))openReminderModal(null,day.dataset.day)
+});
 
 document.addEventListener("submit",e=>{
   const dq=e.target.closest("[data-quick-delegate]");
