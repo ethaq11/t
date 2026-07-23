@@ -3446,7 +3446,7 @@ function renderHome(){
     ${pinnedZoneHTML(["urgent","routine","week","delegated","general"])}
     <section class="group">
       <div class="group-head">
-        <div><h2>لوحة العمل</h2><p>ستة مستطيلات بألوان واضحة — كل لون يدل على نوع عمل مختلف.</p></div>
+        <div><h2>لوحة العمل</h2><p></p></div>
         <span class="group-badge">${urgent.length+routine.filter(t=>!isDone(t)).length+week.length+followCount+deleg.length+activeReminders().length} عنصر</span>
       </div>
 
