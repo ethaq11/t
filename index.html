@@ -3884,6 +3884,1616 @@ html body .overlay:not([hidden]){
   pointer-events:auto;
 }
 
+
+/* متابعة الموظفين السريعة — بأسلوب قريب من تفويض المهام */
+.staff-home-dashboard{display:flex;flex-direction:column;gap:8px}
+.staff-quick-top{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.staff-quick-toggle{
+  min-height:34px;
+  border:1px solid rgba(34,75,110,.16);
+  background:rgba(255,255,255,.88);
+  color:#285E88;
+  border-radius:10px;
+  padding:0 10px;
+  font-size:10px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.staff-quick-toggle>span{
+  width:20px;height:20px;border-radius:6px;
+  background:#3674B5;color:#fff;
+  display:grid;place-items:center;font-size:13px
+}
+.staff-quick-toggle>b{font-size:11px;margin-right:2px}
+.staff-quick-toggle.active{background:#E6F1F8;border-color:#9FC6DF}
+.staff-quick-toggle.disabled{opacity:.55;cursor:not-allowed}
+.staff-quick-top .staff-home-open{
+  margin-right:auto;
+  min-height:34px;
+  padding:0 13px;
+  border-radius:10px;
+}
+
+.staff-quick-form{
+  display:grid!important;
+  grid-template-columns:minmax(120px,.85fr) minmax(165px,1.35fr) auto!important;
+  gap:7px!important;
+  padding:9px!important;
+  background:rgba(255,255,255,.66)!important;
+  border:1px solid rgba(34,80,115,.13)!important;
+  border-radius:12px!important;
+}
+.staff-quick-form label{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+}
+.staff-quick-form label>span{
+  font-size:8px;
+  color:#4B718D;
+  font-weight:700;
+}
+.staff-quick-form select,
+.staff-quick-form input{
+  width:100%;
+  min-width:0;
+  height:36px!important;
+  font-size:11px!important;
+  border:1px solid #BED7E6!important;
+  border-radius:9px!important;
+  background:#fff!important;
+}
+.staff-quick-form button{
+  align-self:end;
+  min-height:36px!important;
+  background:#3674B5!important;
+  color:#fff!important;
+  border-radius:9px!important;
+  padding:0 11px!important;
+  font-size:10px!important;
+  font-weight:700!important;
+}
+
+.staff-home-list{display:flex;flex-direction:column;gap:6px}
+.staff-home-task{
+  background:rgba(255,255,255,.72)!important;
+  border:1px solid rgba(38,83,115,.14)!important;
+  border-radius:11px!important;
+  padding:8px!important;
+}
+.staff-home-route{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.45fr) auto minmax(90px,.7fr)!important;
+  gap:7px!important;
+  align-items:center!important;
+  direction:rtl!important;
+}
+.staff-home-route>b{
+  color:#3674B5!important;
+  font-size:14px!important;
+}
+.staff-home-task-pill,
+.staff-home-person-pill{
+  max-width:none!important;
+  width:100%!important;
+  min-width:0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.staff-home-task-pill{
+  background:#F5F9FC!important;
+  border:1px solid #D1E2EC!important;
+  color:#264F6E!important;
+  border-radius:8px!important;
+  padding:5px 7px!important;
+  font-size:9px!important;
+  font-weight:700!important;
+}
+.staff-home-person-pill{
+  background:#DCECF7!important;
+  color:#2E648B!important;
+  border:1px solid #BBD7E8!important;
+  border-radius:999px!important;
+  padding:5px 8px!important;
+  text-align:center!important;
+  font-size:9px!important;
+  font-weight:700!important;
+}
+.staff-home-actions{
+  margin-top:7px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  flex-wrap:wrap!important;
+}
+.staff-state-check{
+  min-height:28px!important;
+  padding:0 8px!important;
+  font-size:8.5px!important;
+  background:#F7FBFD!important;
+}
+.staff-state-check input{
+  width:15px!important;
+  height:15px!important;
+  min-height:15px!important;
+  accent-color:#3674B5!important;
+}
+.staff-state-check.checked{background:#DCECF8!important}
+.staff-state-check.done-check{border-color:#ADCFE4!important}
+.staff-action-btn{
+  min-height:28px!important;
+  padding:0 8px!important;
+  font-size:8.5px!important;
+}
+.staff-more-link{
+  border:0;
+  background:transparent;
+  color:#2E6794;
+  font-size:9px;
+  font-weight:700;
+  padding:3px 0;
+  align-self:flex-start;
+}
+
+@media(max-width:1180px){
+  .staff-quick-form{grid-template-columns:1fr 1fr!important}
+  .staff-quick-form button{grid-column:1/-1}
+}
+@media(max-width:650px){
+  .staff-quick-form{grid-template-columns:1fr!important}
+  .staff-quick-form button{grid-column:auto}
+  .staff-home-route{grid-template-columns:1fr auto!important}
+  .staff-home-person-pill{grid-column:1/-1}
+}
+
+
+/* =========================================================
+   FINAL STABILITY PASS — no dancing / zoom-safe / scroll-safe
+   ========================================================= */
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  overscroll-behavior-x:none;
+}
+body{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:hidden!important;
+  overscroll-behavior-x:none;
+  touch-action:pan-y;
+}
+.app{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow:visible;
+}
+.main{
+  width:100%;
+  max-width:100%;
+  min-width:0!important;
+  overflow-x:hidden!important;
+}
+
+/* Never move layout elements just because the mouse passes over them */
+.nav-btn:hover,
+.icon-btn:hover,
+.btn:hover,
+.card:hover,
+.day:hover,
+.done-choice-card:hover,
+.smart-main-done:hover,
+.smart-custom-trigger:hover,
+.smart-custom-page:hover,
+.customizer-page-card:hover,
+.employee-jump:hover,
+.task:hover{
+  transform:none!important;
+}
+
+/* Disable entrance animations that cause visible layout "jumps" on rerender */
+.page,
+.group,
+.task,
+.quick-add,
+.search-drop,
+.done-custom-dropdown,
+.smart-custom-panel,
+.modal{
+  animation:none!important;
+}
+
+/* Keep only safe visual transitions, never geometry changes */
+.card,
+.task,
+.nav-btn,
+.icon-btn,
+.btn,
+.day{
+  transition:background-color .14s ease,border-color .14s ease,color .14s ease,opacity .14s ease!important;
+}
+
+/* Grid children may shrink instead of forcing the page wider */
+.overview,
+.home-six,
+.grid-2,
+.grid-3,
+.split-page,
+.employee-four,
+.employee-directory,
+.employee-boards,
+.delegate-tracks,
+.delegate-people,
+.customizer-pages,
+.all-task-grid,
+.done-grid,
+.reminder-layout,
+.calendar,
+.calendar-table,
+.cal-grid,
+.weekdays{
+  min-width:0!important;
+  max-width:100%!important;
+}
+.overview>*,
+.home-six>*,
+.grid-2>*,
+.grid-3>*,
+.split-page>*,
+.employee-four>*,
+.delegate-tracks>*,
+.delegate-people>*,
+.customizer-pages>*,
+.all-task-grid>*,
+.done-grid>*{
+  min-width:0!important;
+}
+
+/* Long text never pushes the layout sideways */
+.task-name,
+.task-note,
+.card-title,
+.card-title h3,
+.card-title p,
+.employee-title-block,
+.staff-home-task-pill,
+.staff-home-person-pill,
+.delegated-task-pill,
+.delegated-person-pill,
+.nav-btn,
+.page-head,
+.group-head{
+  min-width:0!important;
+  overflow-wrap:anywhere;
+}
+
+/* Inputs/forms always stay inside their parent even under browser zoom */
+input,textarea,select,button,
+.quick-delegate,
+.quick-delegate input,
+.staff-quick-form,
+.staff-quick-form input,
+.staff-quick-form select,
+.history-filters,
+.history-date-input,
+.history-year-input{
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+
+/* Desktop layout remains stable while Ctrl + / browser zoom changes CSS viewport */
+@media(min-width:1201px){
+  .app{
+    display:grid!important;
+    grid-template-columns:280px minmax(0,1fr)!important;
+    align-items:start!important;
+  }
+  .sidebar{
+    position:sticky!important;
+    top:0!important;
+    left:auto!important;
+    right:auto!important;
+    width:280px!important;
+    max-width:280px!important;
+    height:100vh!important;
+    transform:none!important;
+  }
+  .main{
+    grid-column:2!important;
+    padding-inline:clamp(18px,2.4vw,38px)!important;
+  }
+}
+
+@media(min-width:901px) and (max-width:1200px){
+  .app{
+    display:grid!important;
+    grid-template-columns:230px minmax(0,1fr)!important;
+    align-items:start!important;
+  }
+  .sidebar{
+    position:sticky!important;
+    top:0!important;
+    left:auto!important;
+    right:auto!important;
+    width:230px!important;
+    max-width:230px!important;
+    height:100vh!important;
+    transform:none!important;
+  }
+  .main{
+    grid-column:2!important;
+    padding:14px 16px 32px!important;
+  }
+  .overview{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .home-six{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .employee-four{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+/* At zoomed/small viewport the sidebar becomes a fixed right drawer;
+   it no longer participates in layout, so nothing shifts. */
+@media(max-width:900px){
+  .app{
+    display:block!important;
+    width:100%!important;
+  }
+  .main{
+    width:100%!important;
+    grid-column:auto!important;
+    padding:12px 12px 28px!important;
+  }
+  .sidebar{
+    position:fixed!important;
+    top:0!important;
+    right:0!important;
+    left:auto!important;
+    bottom:0!important;
+    width:min(330px,90vw)!important;
+    max-width:90vw!important;
+    height:100dvh!important;
+    z-index:500!important;
+    transform:translateX(104%)!important;
+    will-change:transform;
+    transition:transform .18s ease!important;
+  }
+  .sidebar.open{
+    transform:translateX(0)!important;
+  }
+  .overview{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .home-six{grid-template-columns:1fr!important}
+  .employee-four{grid-template-columns:1fr!important}
+  .delegate-tracks,.split-page,.all-task-grid,.done-grid{grid-template-columns:1fr!important}
+}
+
+/* Extra narrow screens */
+@media(max-width:520px){
+  .main{padding:9px 8px 24px!important}
+  .overview{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .topbar{gap:8px!important}
+  .site-heading-card{max-width:100%!important}
+  .top-actions{min-width:0!important}
+  .top-utilities{min-width:0!important}
+  .top-date{max-width:145px!important}
+}
+
+/* Dragging is intentional only from the handle */
+.task[draggable="true"],
+.delegate-home-row[draggable="true"]{
+  cursor:default!important;
+}
+.drag-handle,
+.pinned-drag-handle{
+  cursor:grab!important;
+  user-select:none!important;
+  touch-action:none;
+}
+.drag-handle:active,
+.pinned-drag-handle:active{
+  cursor:grabbing!important;
+}
+
+
+/* =========================================================
+   FINAL polish — home button / sidebar / delegation / pinned
+   ========================================================= */
+.home-top-btn{
+  font-size:21px!important;
+  font-weight:700!important;
+  color:#3674B5!important;
+}
+
+/* Sidebar dark color visually continues for the full page while scrolling */
+@media(min-width:901px){
+  .app{
+    position:relative;
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 280px,var(--bg) 280px,var(--bg) 100%)!important;
+  }
+  .sidebar{
+    align-self:stretch!important;
+    min-height:100vh!important;
+    height:100vh!important;
+    background:var(--sidebar-bg)!important;
+  }
+}
+@media(min-width:901px) and (max-width:1200px){
+  .app{
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 230px,var(--bg) 230px,var(--bg) 100%)!important;
+  }
+}
+
+/* Employee quick add: plus icon never leaves the card */
+.staff-quick-form{
+  grid-template-columns:minmax(105px,.85fr) minmax(0,1.4fr) 38px!important;
+  align-items:end!important;
+}
+.staff-quick-submit{
+  width:38px!important;
+  min-width:38px!important;
+  max-width:38px!important;
+  height:36px!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:20px!important;
+  line-height:1!important;
+}
+@media(max-width:1180px){
+  .staff-quick-form{
+    grid-template-columns:minmax(100px,.9fr) minmax(0,1fr) 38px!important;
+  }
+  .staff-quick-form .staff-quick-submit{grid-column:auto!important}
+}
+@media(max-width:650px){
+  .staff-quick-form{
+    grid-template-columns:1fr 38px!important;
+  }
+  .staff-quick-form label:first-child{grid-column:1/-1}
+  .staff-quick-task-field{grid-column:1}
+  .staff-quick-submit{grid-column:2!important}
+}
+
+/* Delegation card: compact route pills so names never leave card bounds */
+.delegate-home-route{
+  grid-template-columns:minmax(0,1.25fr) 18px minmax(76px,.72fr)!important;
+  gap:5px!important;
+}
+.delegated-task-pill,
+.delegated-person-pill{
+  padding:3px 6px!important;
+  min-height:27px!important;
+  font-size:8.5px!important;
+  line-height:1.3!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.delegated-task-pill{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.delegated-person-pill{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.delegate-arrow{font-size:13px!important}
+
+/* Weekly future-date labels */
+.week-remaining{
+  background:#E3F0F8!important;
+  color:#32688F!important;
+  border-color:#BBD8E9!important;
+}
+
+/* Pinned grid: fixed equal widths, height follows tallest item in each row */
+.pinned-zone>.task-list{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:9px!important;
+  align-items:stretch!important;
+  grid-auto-rows:auto!important;
+}
+.pinned-task{
+  width:100%!important;
+  min-width:0!important;
+  height:100%!important;
+  min-height:128px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  overflow:hidden!important;
+  padding:10px!important;
+}
+.pinned-task-copy{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+.pinned-task-meta{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  flex-wrap:wrap;
+  margin-top:7px;
+}
+.pinned-action-chip{
+  height:22px!important;
+  min-height:22px!important;
+  padding:0 5px!important;
+  font-size:7.5px!important;
+  border-radius:6px!important;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Compact action bar ALWAYS fits inside card */
+.pinned-task-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:4px!important;
+  width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+  padding-top:7px!important;
+  margin-top:8px!important;
+}
+.pinned-task-actions>*{
+  width:24px!important;
+  min-width:24px!important;
+  max-width:24px!important;
+  height:24px!important;
+  min-height:24px!important;
+  max-height:24px!important;
+  padding:0!important;
+  flex:0 0 24px!important;
+  border-radius:7px!important;
+  font-size:10px!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.pinned-task-actions .priority{
+  width:29px!important;
+  min-width:29px!important;
+  max-width:29px!important;
+  flex-basis:29px!important;
+  font-size:9px!important;
+}
+.pinned-drag-handle{
+  border:1px solid rgba(38,84,117,.18)!important;
+  background:#FFFFFF!important;
+  color:#315E82!important;
+  cursor:grab!important;
+  touch-action:none!important;
+}
+.pinned-drag-handle:active{cursor:grabbing!important}
+.pinned-task.dragging{
+  opacity:.58!important;
+  outline:2px solid #3674B5!important;
+}
+.pinned-task.drag-target{
+  outline:2px dashed #3674B5!important;
+  outline-offset:-3px!important;
+}
+body.pinned-pointer-dragging{
+  user-select:none!important;
+  cursor:grabbing!important;
+}
+
+/* Responsive pinned columns while preserving equal row height */
+@media(max-width:1400px){
+  .pinned-zone>.task-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:1100px){
+  .pinned-zone>.task-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+  .pinned-zone>.task-list{grid-template-columns:1fr!important}
+  .pinned-task{min-height:118px!important}
+}
+
+/* Keep every normal task width fixed to its column/card; content grows vertically */
+.task{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+.task-content{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+.task-name,.task-note{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+
+
+/* =========================================================
+   FINAL UI FIX — sidebar / delegation / pinned consistency
+   ========================================================= */
+
+/* Clean black line home icon */
+.home-top-btn{
+  color:#111827!important;
+  background:var(--surface)!important;
+}
+.home-top-btn svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.home-top-btn:hover{
+  color:#000!important;
+  background:var(--surface2)!important;
+}
+
+/* Desktop sidebar is truly fixed and never scrolls independently.
+   The dark column stays visually continuous while the page scrolls. */
+@media(min-width:901px){
+  body{
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 280px,var(--bg) 280px,var(--bg) 100%) fixed!important;
+  }
+  .app{
+    display:block!important;
+    min-height:100vh!important;
+    background:transparent!important;
+  }
+  .sidebar{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    right:auto!important;
+    width:280px!important;
+    max-width:280px!important;
+    height:100vh!important;
+    min-height:100vh!important;
+    overflow:hidden!important;
+    transform:none!important;
+    background:var(--sidebar-bg)!important;
+    z-index:100!important;
+  }
+  .main{
+    width:auto!important;
+    min-width:0!important;
+    margin-left:280px!important;
+    padding-inline:clamp(18px,2.4vw,38px)!important;
+  }
+}
+@media(min-width:901px) and (max-width:1200px){
+  body{
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 230px,var(--bg) 230px,var(--bg) 100%) fixed!important;
+  }
+  .sidebar{
+    width:230px!important;
+    max-width:230px!important;
+  }
+  .main{
+    margin-left:230px!important;
+    padding-inline:16px!important;
+  }
+}
+/* Mobile keeps the right-side drawer behavior */
+@media(max-width:900px){
+  body{background:var(--bg)!important}
+  .main{margin-left:0!important}
+  .sidebar{
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+  }
+}
+
+/* Delegation quick form: smaller fields, always inside the card */
+.card[data-tone="delegate"] .quick-delegate{
+  grid-template-columns:minmax(0,1.45fr) minmax(92px,.75fr) 34px!important;
+  gap:5px!important;
+  width:100%!important;
+  min-width:0!important;
+}
+.card[data-tone="delegate"] .quick-delegate input{
+  min-width:0!important;
+  width:100%!important;
+  height:32px!important;
+  padding:0 8px!important;
+  font-size:9px!important;
+  border-radius:8px!important;
+}
+.card[data-tone="delegate"] .quick-delegate button{
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:32px!important;
+  padding:0!important;
+  font-size:0!important;
+  display:grid!important;
+  place-items:center!important;
+}
+.card[data-tone="delegate"] .quick-delegate button::before{
+  content:"+";
+  font-size:18px;
+  line-height:1;
+  font-weight:700;
+}
+
+/* Delegated rows: full task text, compact employee pill */
+.delegate-home-row{
+  padding:7px!important;
+  overflow:hidden!important;
+}
+.delegate-home-route{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 16px minmax(72px,28%)!important;
+  gap:5px!important;
+  align-items:start!important;
+  width:100%!important;
+}
+.delegated-task-pill{
+  width:100%!important;
+  min-width:0!important;
+  min-height:25px!important;
+  padding:4px 6px!important;
+  border-radius:7px!important;
+  font-size:8.5px!important;
+  line-height:1.45!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  overflow-wrap:anywhere!important;
+  word-break:break-word!important;
+  align-items:flex-start!important;
+}
+.delegated-person-pill{
+  width:100%!important;
+  min-width:0!important;
+  min-height:25px!important;
+  padding:4px 6px!important;
+  border-radius:999px!important;
+  font-size:8px!important;
+  line-height:1.3!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+  justify-content:center!important;
+}
+.delegate-arrow{
+  width:16px!important;
+  text-align:center!important;
+  font-size:12px!important;
+  line-height:25px!important;
+}
+.delegate-home-bottom{
+  gap:4px!important;
+  margin-top:6px!important;
+}
+.delegate-check{
+  min-height:24px!important;
+  padding:0 6px!important;
+  font-size:7.5px!important;
+}
+.delegate-check input{
+  width:13px!important;
+  height:13px!important;
+  min-height:13px!important;
+}
+
+@media(max-width:650px){
+  .card[data-tone="delegate"] .quick-delegate{
+    grid-template-columns:minmax(0,1fr) 34px!important;
+  }
+  .card[data-tone="delegate"] .quick-delegate input:nth-of-type(2){
+    grid-column:1/-1;
+    grid-row:2;
+  }
+  .card[data-tone="delegate"] .quick-delegate button{
+    grid-column:2;
+    grid-row:1;
+  }
+  .delegate-home-route{
+    grid-template-columns:minmax(0,1fr) 14px minmax(70px,32%)!important;
+  }
+}
+
+/* Pinned task controls: one exact size, gap, centering, and visual weight */
+.pinned-task-actions{
+  display:grid!important;
+  grid-auto-flow:column!important;
+  grid-auto-columns:26px!important;
+  grid-template-rows:26px!important;
+  justify-content:start!important;
+  align-items:center!important;
+  column-gap:5px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  padding:7px 0 0!important;
+  margin-top:8px!important;
+  overflow:hidden!important;
+  border-top:1px solid rgba(255,255,255,.28)!important;
+}
+.pinned-task-actions>*,
+.pinned-task-actions .priority,
+.pinned-task-actions .task-reminder,
+.pinned-task-actions .pin-toggle,
+.pinned-task-actions .critical-toggle,
+.pinned-task-actions .task-edit-icon,
+.pinned-task-actions .quick-delete-task,
+.pinned-task-actions .pinned-check,
+.pinned-task-actions .pinned-drag-handle{
+  box-sizing:border-box!important;
+  width:26px!important;
+  min-width:26px!important;
+  max-width:26px!important;
+  height:26px!important;
+  min-height:26px!important;
+  max-height:26px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:7px!important;
+  display:grid!important;
+  place-items:center!important;
+  line-height:1!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  flex:none!important;
+  align-self:center!important;
+}
+.pinned-task-actions .priority{
+  font-size:8px!important;
+  letter-spacing:-1px!important;
+}
+.pinned-task-actions .critical-toggle{
+  font-size:11px!important;
+}
+.pinned-task-actions .task-edit-icon{
+  font-size:13px!important;
+}
+.pinned-task-actions .pinned-drag-handle{
+  font-size:13px!important;
+}
+.pinned-task-actions .pinned-check{
+  border-width:1px!important;
+}
+
+/* Metadata is also scaled consistently */
+.pinned-task-meta{
+  gap:4px!important;
+  margin-top:6px!important;
+}
+.pinned-action-chip{
+  height:21px!important;
+  min-height:21px!important;
+  padding:0 5px!important;
+  border-radius:6px!important;
+  font-size:7.5px!important;
+  line-height:1!important;
+}
+
+/* Fixed column width; row height follows tallest task for a clean aligned grid */
+.pinned-zone>.task-list{
+  align-items:stretch!important;
+}
+.pinned-zone>.task-list>.pinned-task{
+  align-self:stretch!important;
+  height:100%!important;
+}
+@media(min-width:1401px){
+  .pinned-zone>.task-list{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+}
+@media(min-width:1101px) and (max-width:1400px){
+  .pinned-zone>.task-list{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+@media(min-width:651px) and (max-width:1100px){
+  .pinned-zone>.task-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:650px){
+  .pinned-zone>.task-list{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Prevent any hover geometry shift in final build */
+.sidebar *,
+.pinned-task *,
+.delegate-home-row *{
+  transform:none!important;
+}
+
+
+/* =========================================================
+   FINAL STABILITY — no top/bottom bounce or cursor-driven movement
+   ========================================================= */
+html{
+  scroll-behavior:auto!important;
+  overscroll-behavior:none!important;
+  overscroll-behavior-x:none!important;
+  overscroll-behavior-y:none!important;
+  scrollbar-gutter:stable;
+  overflow-anchor:none!important;
+}
+body{
+  scroll-behavior:auto!important;
+  overscroll-behavior:none!important;
+  overscroll-behavior-x:none!important;
+  overscroll-behavior-y:none!important;
+  overflow-anchor:none!important;
+  min-height:100vh!important;
+}
+.app,.main,#content{
+  overflow-anchor:none!important;
+}
+.sidebar{
+  overflow-anchor:none!important;
+}
+
+/* No browser-style smooth movement anywhere in the layout */
+*{
+  scroll-margin-top:0;
+}
+
+/* Desktop sidebar stays absolutely still while page content scrolls */
+@media(min-width:901px){
+  .sidebar{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    right:auto!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    overflow:hidden!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
+
+/* Delegation quick row: exact one-line layout */
+.card[data-tone="delegate"] .quick-delegate.compact{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.5fr) minmax(110px,.85fr) 34px!important;
+  grid-template-rows:34px!important;
+  gap:5px!important;
+  align-items:stretch!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin-bottom:7px!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact input{
+  width:100%!important;
+  min-width:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  padding:0 8px!important;
+  font-size:9px!important;
+  border-radius:8px!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact .delegate-quick-plus{
+  grid-column:3!important;
+  grid-row:1!important;
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:#244F7D!important;
+  color:#fff!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:19px!important;
+  line-height:1!important;
+  font-weight:700!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact .delegate-quick-plus::before{
+  content:none!important;
+}
+
+/* Full delegation page uses the same logical order and stays compact */
+.delegate-dashboard .quick-delegate{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.5fr) minmax(120px,.8fr) 38px!important;
+  gap:6px!important;
+  align-items:stretch!important;
+  width:100%!important;
+}
+.delegate-dashboard .quick-delegate input{
+  min-width:0!important;
+  width:100%!important;
+}
+.delegate-dashboard .quick-delegate .delegate-quick-plus{
+  width:38px!important;
+  min-width:38px!important;
+  max-width:38px!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:20px!important;
+}
+
+/* Mobile: still logical and contained, without overflowing */
+@media(max-width:650px){
+  .card[data-tone="delegate"] .quick-delegate.compact,
+  .delegate-dashboard .quick-delegate{
+    grid-template-columns:minmax(0,1fr) minmax(95px,.72fr) 34px!important;
+    grid-template-rows:34px!important;
+  }
+  .card[data-tone="delegate"] .quick-delegate.compact input,
+  .delegate-dashboard .quick-delegate input{
+    grid-row:1!important;
+  }
+  .card[data-tone="delegate"] .quick-delegate.compact .delegate-quick-plus,
+  .delegate-dashboard .quick-delegate .delegate-quick-plus{
+    grid-column:3!important;
+    grid-row:1!important;
+    width:34px!important;
+    min-width:34px!important;
+    max-width:34px!important;
+  }
+}
+
+/* Ensure delegated task/employee boxes stay inside card at any zoom level */
+.delegate-home-route{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+.delegated-task-pill,
+.delegated-person-pill{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+
+
+/* =========================================================
+   FINAL — calendar / employees / sidebar flow
+   ========================================================= */
+
+/* ---------- Calendar: responsive square cells ---------- */
+.reminder-layout{
+  align-items:start!important;
+}
+.calendar{
+  width:100%!important;
+  max-width:100%!important;
+  aspect-ratio:auto!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  background:#EAF5FB!important;
+  border:1px solid #B8D7E9!important;
+  border-radius:16px!important;
+  padding:10px!important;
+  overflow:hidden!important;
+}
+html[data-theme="dark"] .calendar{
+  background:#20323E!important;
+  border-color:#3B586B!important;
+}
+.calendar-table{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  padding:6px!important;
+  background:#D9ECF7!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+}
+html[data-theme="dark"] .calendar-table{
+  background:#2B4251!important;
+}
+.weekdays{
+  width:100%!important;
+  min-width:0!important;
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+}
+.weekdays div{
+  min-width:0!important;
+  text-align:center!important;
+}
+.cal-grid{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  grid-template-rows:auto!important;
+  gap:3px!important;
+  height:auto!important;
+}
+.day{
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  aspect-ratio:1/1!important;
+  border-radius:7px!important;
+  padding:5px!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  background:#F8FCFE!important;
+  border:1px solid #C4DDEB!important;
+}
+html[data-theme="dark"] .day{
+  background:#314957!important;
+  border-color:#456274!important;
+}
+.day.has-events{
+  background:#F1F8FC!important;
+}
+html[data-theme="dark"] .day.has-events{
+  background:#36505F!important;
+}
+.day-num-wrap{
+  min-width:0!important;
+}
+.day-num{
+  font-size:10px!important;
+  line-height:1!important;
+}
+.day-hijri{
+  margin-top:2px!important;
+  padding:0!important;
+  font-size:6.5px!important;
+  line-height:1!important;
+  background:transparent!important;
+}
+
+/* Tiny event dots only */
+.day-markers{
+  min-height:5px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:2px!important;
+  flex-wrap:wrap!important;
+}
+.cal-marker{
+  width:4px!important;
+  height:4px!important;
+  min-width:4px!important;
+  min-height:4px!important;
+  max-width:4px!important;
+  max-height:4px!important;
+  flex:0 0 4px!important;
+  border-radius:50%!important;
+  box-shadow:none!important;
+}
+.day-more{
+  font-size:6px!important;
+  line-height:1!important;
+  padding:0!important;
+}
+.calendar-legend .legend-dot{
+  width:5px!important;
+  height:5px!important;
+}
+
+/* Do not force a wide calendar on mobile */
+@media(max-width:760px){
+  .calendar-table{overflow:hidden!important}
+  .weekdays,.cal-grid{min-width:0!important}
+  .cal-grid{height:auto!important}
+  .day{padding:3px!important;border-radius:5px!important}
+  .day-num{font-size:8.5px!important}
+  .day-hijri{font-size:5.5px!important}
+  .cal-marker{
+    width:3px!important;
+    height:3px!important;
+    min-width:3px!important;
+    min-height:3px!important;
+    max-width:3px!important;
+    max-height:3px!important;
+    flex-basis:3px!important;
+  }
+}
+
+/* ---------- Employees: visually separate every employee ---------- */
+.employee-boards{
+  gap:16px!important;
+}
+.employee-dashboard{
+  border:1px solid #BFD7E7!important;
+  border-radius:19px!important;
+  background:var(--surface)!important;
+  padding:12px!important;
+  overflow:hidden!important;
+}
+html[data-theme="dark"] .employee-dashboard{
+  border-color:#435A69!important;
+}
+.employee-dashboard+.employee-dashboard{
+  margin-top:3px!important;
+}
+.employee-dashboard-head{
+  padding:10px 11px!important;
+  margin:-2px -2px 11px!important;
+  border:1px solid #C2DCEB!important;
+  border-radius:14px!important;
+  background:#E7F2F9!important;
+}
+html[data-theme="dark"] .employee-dashboard-head{
+  background:#294357!important;
+  border-color:#3E627A!important;
+}
+.employee-name-highlight{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:32px!important;
+  padding:5px 11px!important;
+  border-radius:10px!important;
+  background:#3674B5!important;
+  color:#FFFFFF!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  line-height:1.2!important;
+}
+.employee-title-block p{
+  font-size:9.5px!important;
+  color:#557185!important;
+}
+html[data-theme="dark"] .employee-title-block p{
+  color:#BED0DC!important;
+}
+.employee-edit-action{
+  background:#DDECF7!important;
+  border-color:#A8CBE1!important;
+  color:#255F8C!important;
+  font-weight:750!important;
+}
+.employee-edit-action:hover{
+  background:#3674B5!important;
+  border-color:#3674B5!important;
+  color:#FFFFFF!important;
+}
+
+/* Six independent blocks per employee */
+.employee-six{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+.employee-box{
+  min-width:0!important;
+  background:var(--surface2)!important;
+}
+.employee-box.urgent-open{border-top:5px solid #3674B5!important}
+.employee-box.urgent-done{border-top:5px solid #79B7DC!important}
+.employee-box.routine-open{border-top:5px solid #578FCA!important}
+.employee-box.routine-done{border-top:5px solid #A1E3F9!important}
+.employee-box.delegated-open{border-top:5px solid #467FBF!important}
+.employee-box.delegated-done{border-top:5px solid #9CCBE7!important}
+.employee-box .delegated-track-row{
+  padding:7px!important;
+}
+.employee-box .delegated-task-pill{
+  font-size:8px!important;
+}
+.employee-box .delegated-person-pill{
+  font-size:7.5px!important;
+}
+.delegated-add{
+  background:#467FBF!important;
+  color:#fff!important;
+  border-color:#467FBF!important;
+}
+@media(max-width:1250px){
+  .employee-six{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+  .employee-six{grid-template-columns:1fr!important}
+  .employee-dashboard-head{align-items:flex-start!important}
+}
+
+/* ---------- Sidebar: no internal scroll; it moves with the page ---------- */
+@media(min-width:901px){
+  body{
+    background:var(--bg)!important;
+  }
+  .app{
+    display:grid!important;
+    grid-template-columns:280px minmax(0,1fr)!important;
+    align-items:stretch!important;
+    min-height:100vh!important;
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 280px,var(--bg) 280px,var(--bg) 100%)!important;
+  }
+  .sidebar{
+    position:relative!important;
+    top:auto!important;
+    bottom:auto!important;
+    left:auto!important;
+    right:auto!important;
+    grid-column:1!important;
+    width:280px!important;
+    max-width:280px!important;
+    height:auto!important;
+    min-height:100%!important;
+    max-height:none!important;
+    align-self:stretch!important;
+    overflow:visible!important;
+    transform:none!important;
+    transition:none!important;
+    background:var(--sidebar-bg)!important;
+  }
+  .main{
+    grid-column:2!important;
+    width:auto!important;
+    margin-left:0!important;
+    min-width:0!important;
+    padding-inline:clamp(18px,2.4vw,38px)!important;
+  }
+}
+@media(min-width:901px) and (max-width:1200px){
+  .app{
+    grid-template-columns:230px minmax(0,1fr)!important;
+    background:
+      linear-gradient(to right,var(--sidebar-bg) 0,var(--sidebar-bg) 230px,var(--bg) 230px,var(--bg) 100%)!important;
+  }
+  .sidebar{
+    width:230px!important;
+    max-width:230px!important;
+  }
+  .main{
+    margin-left:0!important;
+    padding-inline:16px!important;
+  }
+}
+/* Mobile remains a drawer */
+@media(max-width:900px){
+  .app{display:block!important;background:var(--bg)!important}
+  .sidebar{
+    position:fixed!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+  }
+}
+
+/* Keep sidebar options compact enough to all remain visible in natural page flow */
+@media(min-width:901px){
+  .sidebar{
+    padding-top:14px!important;
+    padding-bottom:18px!important;
+  }
+  .brand-simple{margin-bottom:12px!important}
+  .brand-line{min-height:54px!important;padding:10px 8px!important;font-size:15.5px!important}
+  .nav-group{margin-bottom:9px!important}
+  .nav-head{padding:5px 9px 4px!important;font-size:10px!important}
+  .nav{gap:2px!important}
+  .nav-btn{
+    min-height:38px!important;
+    padding:5px 8px!important;
+    font-size:12.5px!important;
+  }
+  .nav-ico{
+    width:25px!important;
+    height:25px!important;
+    font-size:10px!important;
+  }
+  .nav-count{
+    min-width:22px!important;
+    height:21px!important;
+    font-size:7.5px!important;
+  }
+}
+
+
+/* =========================================================
+   FINAL — delegation groups + tiny calendar dots + reminder clear
+   ========================================================= */
+
+/* Tiny calendar markers */
+.cal-marker{
+  width:3px!important;
+  height:3px!important;
+  min-width:3px!important;
+  min-height:3px!important;
+  max-width:3px!important;
+  max-height:3px!important;
+  flex:0 0 3px!important;
+  border-radius:50%!important;
+}
+.day-markers{
+  gap:2px!important;
+  min-height:4px!important;
+}
+.calendar-legend .legend-dot{
+  width:4px!important;
+  height:4px!important;
+}
+@media(max-width:760px){
+  .cal-marker{
+    width:2.5px!important;
+    height:2.5px!important;
+    min-width:2.5px!important;
+    min-height:2.5px!important;
+    max-width:2.5px!important;
+    max-height:2.5px!important;
+    flex-basis:2.5px!important;
+  }
+}
+
+/* Delete-all reminders */
+.reminder-notice-btn.delete-all{
+  background:#F8ECEF!important;
+  color:#A34F61!important;
+  border-color:#D8AAB4!important;
+}
+.reminder-notice-btn.delete-all:hover{
+  background:#B85F70!important;
+  color:#fff!important;
+  border-color:#B85F70!important;
+}
+
+/* Delegation grouped clearly per employee */
+.delegated-employee-groups{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:12px;
+}
+.delegated-employee-group{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--surface);
+  overflow:hidden;
+}
+.delegated-employee-group.tone-0{border-top:6px solid #3674B5}
+.delegated-employee-group.tone-1{border-top:6px solid #578FCA}
+.delegated-employee-group.tone-2{border-top:6px solid #79B7DC}
+.delegated-employee-group.tone-3{border-top:6px solid #A1E3F9}
+
+.delegated-employee-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 12px;
+  background:#EEF6FB;
+  border-bottom:1px solid #D2E3ED;
+}
+html[data-theme="dark"] .delegated-employee-head{
+  background:#294457;
+  border-bottom-color:#3E5C70;
+}
+.delegated-employee-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+.delegated-employee-avatar{
+  width:31px;
+  height:31px;
+  min-width:31px;
+  border-radius:10px;
+  background:#3674B5;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:800;
+}
+.delegated-employee-name h3{
+  margin:0;
+  font-size:13px;
+  font-weight:750;
+}
+.delegated-employee-name p{
+  margin:2px 0 0;
+  font-size:8.5px;
+  color:var(--muted);
+}
+.delegated-employee-stats{
+  margin-right:auto;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex-wrap:wrap;
+}
+.delegated-employee-stats span{
+  min-height:26px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#FFFFFF;
+  color:#366789;
+  border:1px solid #C5DCEB;
+  display:flex;
+  align-items:center;
+  font-size:8px;
+  font-weight:700;
+}
+html[data-theme="dark"] .delegated-employee-stats span{
+  background:#243743;
+  color:#D4E4EE;
+  border-color:#425E70;
+}
+.delegated-person-add{
+  width:31px;
+  height:31px;
+  min-width:31px;
+  border:0;
+  border-radius:9px;
+  background:#3674B5;
+  color:#fff;
+  font-size:17px;
+  font-weight:700;
+}
+.delegated-employee-tracks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  padding:10px;
+}
+.delegated-employee-tracks .delegate-track{
+  min-width:0;
+}
+.delegated-employee-tracks .delegate-track.open{
+  background:#F1F7FB!important;
+  border-top-color:#578FCA!important;
+}
+.delegated-employee-tracks .delegate-track.done{
+  background:#F7FAFC!important;
+  border-top-color:#A1E3F9!important;
+}
+html[data-theme="dark"] .delegated-employee-tracks .delegate-track{
+  background:var(--surface2)!important;
+}
+
+@media(max-width:760px){
+  .delegated-employee-head{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .delegated-employee-stats{
+    width:100%;
+    margin-right:39px;
+  }
+  .delegated-person-add{
+    margin-right:auto;
+  }
+  .delegated-employee-tracks{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Footer text requested */
+.site-footer span:first-child{
+  font-size:13px!important;
+  color:#111827!important;
+}
+html[data-theme="dark"] .site-footer span:first-child{
+  color:#F5F8FA!important;
+}
+
 </style>
 </head>
 <body>
@@ -3944,6 +5554,13 @@ html body .overlay:not([hidden]){
       <div class="top-actions">
         <button class="icon-btn mobile-menu" id="mobileMenu" title="القائمة">☰</button>
         <div class="top-utilities">
+          <button class="icon-btn home-top-btn" data-view-jump="home" title="العودة للرئيسية" aria-label="العودة للرئيسية">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3.5 10.7 12 3.8l8.5 6.9"></path>
+    <path d="M5.8 9.4v10.2h12.4V9.4"></path>
+    <path d="M9.5 19.6v-6h5v6"></path>
+  </svg>
+</button>
           <div class="top-date" id="dateChip"></div>
           <button class="icon-btn" id="searchBtn" title="بحث" aria-label="بحث">⌕</button>
           <button class="icon-btn" id="themeBtn" title="ليلي / نهاري">☾</button>
@@ -3969,7 +5586,7 @@ html body .overlay:not([hidden]){
 
     <section id="content"></section>
     <footer class="site-footer">
-      <span>«بهمّتك وتنظيمك، تجعلين من أصغر المهام بصمة إنجاز لا تُنسى»</span>
+      <span>همتك وتنظيمك تجعل أصغر المهام بصمة إنجاز لاتنسى</span>
       <a href="https://t.me/Reema4r" target="_blank" rel="noopener noreferrer">@Reema4r</a>
     </footer>
   </main>
@@ -3995,7 +5612,7 @@ html body .overlay:not([hidden]){
         </div>
         <div class="field"><label>تاريخ المهمة</label><input id="taskDate" type="date"></div>
         <div class="field"><label>الساعة — اختياري</label><input id="taskTime" type="time"></div>
-        <div class="field" id="taskPersonWrap"><label>مفوّضة إلى</label><input id="taskPerson" maxlength="70" placeholder="اسم الشخص"></div>
+        <div class="field" id="taskPersonWrap"><label>مفوّضة إلى</label><input id="taskPerson" maxlength="70" placeholder="اسم الموظف"></div>
         <div class="field" id="taskStatusWrap"><label>الحالة</label>
           <select id="taskStatus">
             <option value="">—</option>
@@ -4145,7 +5762,7 @@ html body .overlay:not([hidden]){
           <option value="coral">أزرق داكن</option>
           <option value="blue">أزرق متوسط</option>
           <option value="cream">سماوي فاتح</option>
-          <option value="mint">نعناعي</option>
+          <option value="mint">سماوي</option>
         </select>
       </div>
       <div class="modal-actions"><button class="btn primary">إضافة المربع</button><button class="btn" type="button" id="closeSectionModal">إلغاء</button></div>
@@ -4224,6 +5841,7 @@ let dragPayload=null;
 let calendarCursor=new Date();
 let selectedEmployeeId=null;
 let doneSource="main";
+let staffQuickOpen=false;
 let doneMode="chooser";
 let doneCustomOpen=false;
 let allFilterMode="all";
@@ -4328,6 +5946,25 @@ function dueLabel(s){
   if(fromISO(s)<fromISO(todayISO()))return "متأخرة";
   try{return new Intl.DateTimeFormat("ar-SA",{day:"numeric",month:"short"}).format(fromISO(s))}catch{return s}
 }
+function gregorianDateLabel(s){
+  if(!s)return "";
+  try{
+    return new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{day:"numeric",month:"short",year:"numeric"}).format(fromISO(s));
+  }catch{return s}
+}
+function daysRemainingLabel(s){
+  if(!s)return "";
+  const today=fromISO(todayISO()),target=fromISO(s);
+  const days=Math.round((target-today)/86400000);
+  if(days===0)return "اليوم";
+  if(days===1)return "متبقي يوم";
+  if(days===2)return "متبقي يومان";
+  if(days>2)return `متبقي ${days} أيام`;
+  if(days===-1)return "متأخرة يوم";
+  if(days===-2)return "متأخرة يومين";
+  return `متأخرة ${Math.abs(days)} أيام`;
+}
+
 function sorted(arr){
   return [...arr].sort((a,b)=>{
     const ad=isDone(a),bd=isDone(b);if(ad!==bd)return ad-bd;
@@ -4367,34 +6004,30 @@ function taskCard(t,{draggable=true,quickDelete=false}={}){
   const critical=!!t.critical;
 
   if(t.pinned){
-    return `<article class="task pinned-task ${done?"done":""} ${critical?"critical":""}" draggable="${draggable}" data-task-id="${esc(t.id)}" data-task-type="${esc(t.type)}">
+    return `<article class="task pinned-task ${done?"done":""} ${critical?"critical":""}" data-task-id="${esc(t.id)}" data-task-type="${esc(t.type)}">
       <div class="pinned-task-copy" data-action="edit-task" data-id="${esc(t.id)}">
         <div class="task-name">${esc(t.title)}</div>
         ${t.note?`<div class="task-note">${esc(t.note)}</div>`:""}
+        <div class="pinned-task-meta">
+          ${t.type==="urgent"?`<span class="pinned-action-chip urgent">عاجلة</span>`:""}
+          ${t.type==="routine"?`<span class="pinned-action-chip routine">روتين</span>`:""}
+          ${t.type==="week"?`<span class="pinned-action-chip week">أسبوعية</span>`:""}
+          ${t.type==="delegated"?`<span class="pinned-action-chip delegated">تفويض</span>`:""}
+          ${t.date?`<span class="pinned-action-chip date">📅 ${esc(t.type==="week"?gregorianDateLabel(t.date):dueLabel(t.date))}</span>`:""}
+          ${t.type==="week"&&t.date?`<span class="pinned-action-chip date">◷ ${esc(daysRemainingLabel(t.date))}</span>`:""}
+          ${t.time?`<span class="pinned-action-chip time">◷ ${esc(t.time)}</span>`:""}
+          ${status?`<span class="pinned-action-chip status">${esc(status)}</span>`:""}
+        </div>
       </div>
 
       <div class="pinned-task-actions">
-        <span class="drag-handle pinned-drag-handle" title="اسحبي لترتيب المهمة">⋮⋮</span>
-
+        <button class="pinned-drag-handle" type="button" data-pinned-drag="${esc(t.id)}" title="اسحبي لترتيب المهمة" aria-label="سحب المهمة">↕</button>
         <button class="check pinned-check" data-action="toggle-task" data-id="${esc(t.id)}" title="${done?"إلغاء الإنجاز":"تم الإنجاز"}">${done?"✓":""}</button>
-
-        ${t.type==="urgent"?`<span class="pinned-action-chip urgent">عاجلة</span>`:""}
-        ${t.type==="routine"?`<span class="pinned-action-chip routine">روتين</span>`:""}
-        ${t.type==="week"?`<span class="pinned-action-chip week">أسبوعية</span>`:""}
-        ${t.type==="delegated"?`<span class="pinned-action-chip delegated">تفويض</span>`:""}
-
-        ${t.date?`<span class="pinned-action-chip date">📅 ${esc(dueLabel(t.date))}</span>`:""}
-        ${t.time?`<span class="pinned-action-chip time">◷ ${esc(t.time)}</span>`:""}
-        ${status?`<span class="pinned-action-chip status">${esc(status)}</span>`:""}
-
         ${t.type==="urgent"?`<button class="priority pinned-control" data-action="cycle-priority" data-id="${esc(t.id)}" title="الأولوية">${priorityText(t.priority)}</button>`:""}
         ${t.type==="delegated"?`<button class="task-reminder pinned-control" data-action="task-reminder" data-id="${esc(t.id)}" title="إنشاء تذكير">◷</button>`:""}
-
         <button class="pin-toggle active pinned-control" data-action="toggle-pin" data-id="${esc(t.id)}" title="إلغاء التثبيت">⌖</button>
-        <button class="critical-toggle ${critical?"active":""} pinned-control" data-action="toggle-critical" data-id="${esc(t.id)}" title="أولوية قصوى">قصوى</button>
-
+        <button class="critical-toggle ${critical?"active":""} pinned-control" data-action="toggle-critical" data-id="${esc(t.id)}" title="أولوية قصوى">!</button>
         ${quickDelete?`<button class="quick-delete-task pinned-control" data-action="quick-delete-task" data-id="${esc(t.id)}" title="حذف المهمة">×</button>`:""}
-
         <button class="task-more task-edit-icon pinned-control" data-action="edit-task" data-id="${esc(t.id)}" title="تعديل المهمة" aria-label="تعديل المهمة">✎</button>
       </div>
     </article>`;
@@ -4413,7 +6046,8 @@ function taskCard(t,{draggable=true,quickDelete=false}={}){
         ${t.type==="routine"?`<span class="tag routine">روتين</span>`:""}
         ${t.type==="week"?`<span class="tag week">أسبوعية</span>`:""}
         ${t.type==="delegated"?`<span class="tag delegate">مفوّضة إلى ${esc(t.person||"غير محدد")}</span>`:""}
-        ${t.date?`<span class="tag">📅 ${esc(dueLabel(t.date))}</span>`:""}
+        ${t.date?`<span class="tag">📅 ${esc(t.type==="week"?gregorianDateLabel(t.date):dueLabel(t.date))}</span>`:""}
+        ${t.type==="week"&&t.date?`<span class="tag week-remaining">◷ ${esc(daysRemainingLabel(t.date))}</span>`:""}
         ${t.time?`<span class="tag">◷ ${esc(t.time)}</span>`:""}
         ${status?`<span class="tag">${esc(status)}</span>`:""}
       </div>
@@ -4434,7 +6068,14 @@ function taskList(arr,empty,type){
   </div>`
 }
 function pinnedTasksFor(types=null){
-  return sorted(tasks().filter(t=>t.pinned&&!isDone(t)&&(!types||types.includes(t.type))));
+  return tasks()
+    .filter(t=>t.pinned&&!isDone(t)&&(!types||types.includes(t.type)))
+    .sort((a,b)=>{
+      if((a.order||0)!==(b.order||0))return (a.order||0)-(b.order||0);
+      if(a.critical!==b.critical)return Number(b.critical)-Number(a.critical);
+      if(a.type==="urgent"&&b.type==="urgent"&&a.priority!==b.priority)return b.priority-a.priority;
+      return (b.updatedAt||0)-(a.updatedAt||0);
+    });
 }
 function pinnedZoneHTML(types=null){
   const list=pinnedTasksFor(types);
@@ -4519,7 +6160,9 @@ function reorderPinnedTask(taskId,beforeId=null){
     const t=d.tasks.find(x=>x.id===taskId);
     if(!t||!t.pinned)return;
 
-    const pinned=sorted(d.tasks.filter(x=>normalizeTask(x).pinned&&!isDone(normalizeTask(x))));
+    const pinned=d.tasks
+      .filter(x=>normalizeTask(x).pinned&&!isDone(normalizeTask(x)))
+      .sort((a,b)=>(a.order||0)-(b.order||0));
     const ordered=pinned.filter(x=>x.id!==taskId);
     const targetIndex=beforeId?ordered.findIndex(x=>x.id===beforeId):ordered.length;
     ordered.splice(targetIndex<0?ordered.length:targetIndex,0,t);
@@ -4911,9 +6554,9 @@ function delegationQuickForm(compact=false){
   const listId=compact?"delegateNamesHome":"delegateNamesPage";
   return `<form class="quick-delegate ${compact?"compact":""}" data-quick-delegate>
     <input name="title" maxlength="150" required placeholder="المهمة المفوّضة">
-    <input name="person" list="${listId}" maxlength="80" required placeholder="اسم الموظف / الشخص">
+    <input name="person" list="${listId}" maxlength="80" required placeholder="اسم الموظف">
     <datalist id="${listId}">${names.map(p=>`<option value="${esc(p.name)}"></option>`).join("")}</datalist>
-    <button>تفويض</button>
+    <button type="submit" class="delegate-quick-plus" title="إضافة التفويض" aria-label="إضافة التفويض">＋</button>
   </form>`;
 }
 function delegatedSummaryHTML(limit=4){
@@ -4942,10 +6585,13 @@ function delegatedSummaryHTML(limit=4){
 
 function renderEmployeeHomePreview(){
   const es=read().employees;
+
   if(!es.length){
-    return `<div class="staff-home-empty">
-      <div class="empty">لا يوجد موظفون بعد.</div>
-      <button class="staff-home-open" data-view-jump="employees">فتح متابعة الموظفين</button>
+    return `<div class="staff-home-dashboard">
+      <div class="staff-quick-top">
+        <button class="staff-quick-toggle disabled" type="button" disabled>＋ إضافة سريعة</button>
+      </div>
+      <div class="empty">أضيفي موظفاً أولاً من صفحة متابعة الموظفين، وبعدها يظهر هنا ضمن الإضافة السريعة.</div>
     </div>`;
   }
 
@@ -4953,57 +6599,66 @@ function renderEmployeeHomePreview(){
 
   const rows=[];
   es.forEach(e=>{
-    const recent=[...(e.tasks||[])].sort((a,b)=>{
-      if(!!a.done!==!!b.done)return Number(a.done)-Number(b.done);
-      if((a.priority||1)!==(b.priority||1))return (b.priority||1)-(a.priority||1);
-      return (b.updatedAt||b.completedAt||b.createdAt||0)-(a.updatedAt||a.completedAt||a.createdAt||0);
-    }).slice(0,3);
-
+    const recent=[...(e.tasks||[])]
+      .filter(t=>!t.done)
+      .sort((a,b)=>{
+        if((a.priority||1)!==(b.priority||1))return (b.priority||1)-(a.priority||1);
+        return (b.updatedAt||b.createdAt||0)-(a.updatedAt||a.createdAt||0);
+      })
+      .slice(0,3);
     recent.forEach(t=>rows.push({e,t}));
   });
 
+  rows.sort((a,b)=>{
+    if((a.t.priority||1)!==(b.t.priority||1))return (b.t.priority||1)-(a.t.priority||1);
+    return (b.t.updatedAt||b.t.createdAt||0)-(a.t.updatedAt||a.t.createdAt||0);
+  });
+
   return `<div class="staff-home-dashboard">
-    <form class="staff-quick-form" data-staff-quick-form>
-      <select name="employee" aria-label="اختيار الموظف">${options}</select>
-      <input name="title" maxlength="150" required placeholder="مهمة جديدة للموظف">
-      <button type="submit">＋ إضافة مهمة</button>
-    </form>
+    <div class="staff-quick-top">
+      <button class="staff-quick-toggle ${staffQuickOpen?"active":""}" data-action="toggle-staff-quick" type="button">
+        <span>＋</span> إضافة سريعة <b>${staffQuickOpen?"⌃":"⌄"}</b>
+      </button>
+    </div>
+
+    ${staffQuickOpen?`<form class="staff-quick-form" data-staff-quick-form>
+      <label>
+        <span>الموظف</span>
+        <select name="employee" aria-label="اختيار الموظف">${options}</select>
+      </label>
+      <label class="staff-quick-task-field">
+        <span>المهمة</span>
+        <input name="title" maxlength="150" required placeholder="اكتبي المهمة الجديدة">
+      </label>
+      <button type="submit" class="staff-quick-submit" title="إضافة المهمة" aria-label="إضافة المهمة">＋</button>
+    </form>`:""}
 
     <div class="staff-home-list">
-      ${rows.length?rows.slice(0,6).map(({e,t})=>`<article class="staff-home-task ${t.done?"done":""}">
-        <div class="staff-home-task-main">
-          <div class="staff-home-person">
-            <span class="employee-avatar">${esc((e.name||"•")[0])}</span>
-            <div><b>${esc(e.name)}</b><small>${esc(e.specialty||"بدون تخصص")}</small></div>
-          </div>
-          <div class="staff-home-route">
-            <span class="staff-home-task-pill">${esc(t.title)}</span>
-            <b>←</b>
-            <span class="staff-home-person-pill">${esc(e.name)}</span>
-          </div>
+      ${rows.length?rows.slice(0,6).map(({e,t})=>`<article class="staff-home-task">
+        <div class="staff-home-route">
+          <span class="staff-home-task-pill">${esc(t.title)}</span>
+          <b>←</b>
+          <span class="staff-home-person-pill">${esc(e.name)}</span>
         </div>
 
         <div class="staff-home-actions">
           <label class="staff-state-check ${t.sent?"checked":""}">
             <input type="checkbox" data-action="toggle-employee-sent" data-employee="${esc(e.id)}" data-id="${esc(t.id)}" ${t.sent?"checked":""}>
-            <span>تم الإرسال</span>
+            <span>أرسلت</span>
           </label>
 
-          <label class="staff-state-check done-check ${t.done?"checked":""}">
-            <input type="checkbox" data-action="toggle-employee-task" data-employee="${esc(e.id)}" data-id="${esc(t.id)}" ${t.done?"checked":""}>
-            <span>${t.done?"تم الإنجاز":"أنجز"}</span>
+          <label class="staff-state-check done-check">
+            <input type="checkbox" data-action="complete-employee-home-task" data-employee="${esc(e.id)}" data-id="${esc(t.id)}">
+            <span>أنجزت</span>
           </label>
 
           <button class="staff-action-btn" data-action="edit-employee-task" data-employee="${esc(e.id)}" data-id="${esc(t.id)}">تعديل</button>
           <button class="staff-action-btn delete" data-action="quick-delete-employee-task" data-employee="${esc(e.id)}" data-id="${esc(t.id)}">حذف</button>
         </div>
-      </article>`).join(""):`<div class="empty">لا توجد مهام موظفين حتى الآن.</div>`}
+      </article>`).join(""):`<div class="empty">لا توجد مهام مفتوحة للموظفين.</div>`}
     </div>
 
-    <div class="staff-home-footer">
-      <span>${rows.filter(x=>!x.t.done).length} مهمة مفتوحة</span>
-      <button class="staff-home-open" data-view-jump="employees">فتح متابعة الموظفين</button>
-    </div>
+    ${rows.length>6?`<button class="staff-more-link" data-view-jump="employees">عرض المزيد</button>`:""}
   </div>`;
 }
 function renderListPage(title,sub,items,type,tone,icon,extra=""){
@@ -5053,6 +6708,7 @@ function renderReminders(){
       </div>
       <span class="spacer"></span>
       <button class="reminder-notice-btn enable" data-action="enable-notifications">◉ تفعيل إشعارات المتصفح</button>
+      <button class="reminder-notice-btn delete-all" data-action="delete-all-reminders">⌫ حذف كل التذكيرات</button>
       <button class="reminder-notice-btn add" data-action="open-reminder">＋ إضافة تذكير</button>
     </div>
     <div class="reminder-layout">
@@ -5093,24 +6749,36 @@ function renderEmployees(){
 function renderEmployeeBoard(e){
   const urgentOpen=employeeOpenTasks(e,"urgent"),urgentDone=employeeDoneTasks(e,"urgent");
   const routineOpen=employeeOpenTasks(e,"routine"),routineDoneList=employeeDoneTasks(e,"routine");
-  const totalOpen=urgentOpen.length+routineOpen.length,totalDone=urgentDone.length+routineDoneList.length;
+
+  const delegatedAll=tasks().filter(t=>t.type==="delegated"&&t.person===e.name);
+  const delegatedOpen=sorted(delegatedAll.filter(t=>!isDone(t)));
+  const delegatedDone=sorted(delegatedAll.filter(t=>isDone(t)));
+
+  const totalOpen=urgentOpen.length+routineOpen.length+delegatedOpen.length;
+  const totalDone=urgentDone.length+routineDoneList.length+delegatedDone.length;
+
   return `<section class="employee-dashboard" id="employee-${esc(e.id)}">
     <div class="employee-dashboard-head">
       <span class="employee-avatar">${esc((e.name||"•")[0])}</span>
+
       <div class="employee-title-block">
         <div class="employee-name-line">
-          <h2>${esc(e.name)}</h2>
-          <div class="employee-inline-stats"><span>${totalOpen} مفتوحة</span><span>${totalDone} منجزة</span></div>
+          <span class="employee-name-highlight">${esc(e.name)}</span>
+          <div class="employee-inline-stats">
+            <span>${totalOpen} مفتوحة</span>
+            <span>${totalDone} منجزة</span>
+          </div>
         </div>
         <p>${esc(e.specialty||"بدون تخصص")}</p>
       </div>
+
       <div class="employee-name-actions">
-        <button class="mini employee-action" data-action="edit-employee" data-id="${esc(e.id)}">تعديل</button>
+        <button class="mini employee-action employee-edit-action" data-action="edit-employee" data-id="${esc(e.id)}">تعديل</button>
         <button class="mini employee-action dangerish" data-action="delete-employee" data-id="${esc(e.id)}">حذف</button>
       </div>
     </div>
 
-    <div class="employee-four">
+    <div class="employee-six">
       <div class="employee-box urgent-open">
         <div class="employee-box-head">
           <h3>المهام العاجلة</h3>
@@ -5121,7 +6789,7 @@ function renderEmployeeBoard(e){
       </div>
 
       <div class="employee-box urgent-done">
-        <div class="employee-box-head"><h3>تم إنجاز العاجلة</h3><span>${urgentDone.length}</span></div>
+        <div class="employee-box-head"><h3>إنجازات العاجلة</h3><span>${urgentDone.length}</span></div>
         ${employeeTypedList(e,"urgent",true)}
       </div>
 
@@ -5136,12 +6804,31 @@ function renderEmployeeBoard(e){
       </div>
 
       <div class="employee-box routine-done">
-        <div class="employee-box-head"><h3>تم إنجاز الروتين</h3><span>${routineDoneList.length}</span></div>
+        <div class="employee-box-head"><h3>إنجازات الروتين</h3><span>${routineDoneList.length}</span></div>
         ${employeeTypedList(e,"routine",true)}
+      </div>
+
+      <div class="employee-box delegated-open">
+        <div class="employee-box-head">
+          <h3>التفويض</h3>
+          <span>${delegatedOpen.length}</span>
+          <button class="employee-box-btn delegated-add" data-action="add-delegated-task" data-person="${esc(e.name)}">＋</button>
+        </div>
+        <div class="task-list">
+          ${delegatedOpen.length?delegatedOpen.map(t=>delegatedTrackRow(t,false)).join(""):`<div class="empty">لا توجد مهام مفوّضة لهذا الموظف.</div>`}
+        </div>
+      </div>
+
+      <div class="employee-box delegated-done">
+        <div class="employee-box-head"><h3>إنجازات التفويض</h3><span>${delegatedDone.length}</span></div>
+        <div class="task-list">
+          ${delegatedDone.length?delegatedDone.map(t=>delegatedTrackRow(t,true)).join(""):`<div class="empty">لا توجد إنجازات تفويض بعد.</div>`}
+        </div>
       </div>
     </div>
   </section>`
 }
+
 function delegatedPeople(){
   const d=read();
   const names=new Map();
@@ -5149,7 +6836,7 @@ function delegatedPeople(){
   (d.delegates||[]).forEach(p=>names.set(p.name,{name:p.name,specialty:p.specialty||"",source:"delegate"}));
   const delegated=d.tasks.map(normalizeTask).filter(t=>t.type==="delegated");
   delegated.filter(t=>t.person).forEach(t=>{if(!names.has(t.person))names.set(t.person,{name:t.person,specialty:"",source:"task"})});
-  if(delegated.some(t=>!t.person))names.set("غير محدد",{name:"غير محدد",specialty:"مهام تحتاج تحديد شخص",source:"unassigned"});
+  if(delegated.some(t=>!t.person))names.set("غير محدد",{name:"غير محدد",specialty:"مهام تحتاج تحديد موظف",source:"unassigned"});
   return [...names.values()].sort((a,b)=>a.name.localeCompare(b.name,"ar"));
 }
 function delegatedTrackRow(t,done=false){
@@ -5175,32 +6862,70 @@ function delegatedTrackRow(t,done=false){
   </article>`;
 }
 function renderDelegated(){
-  const all=tasks().filter(t=>t.type==="delegated");
-  const open=sorted(all.filter(t=>!isDone(t)&&!t.pinned));
-  const done=sorted(all.filter(t=>isDone(t)));
+  const people=delegatedPeople();
+  const delegatedAll=tasks().filter(t=>t.type==="delegated");
+
+  const groups=people.map((p,index)=>{
+    const list=delegatedAll.filter(t=>(t.person||"غير محدد")===p.name);
+    const open=sorted(list.filter(t=>!isDone(t)&&!t.pinned));
+    const done=sorted(list.filter(t=>isDone(t)));
+    return {p,index,open,done,total:list.length};
+  }).filter(g=>g.total>0||g.p.source==="employee"||g.p.source==="delegate");
+
   $("#content").innerHTML=`<div class="page">
     ${pinnedZoneHTML(["delegated"])}
+
     <section class="delegate-dashboard">
       <div class="delegate-dashboard-head">
-        <div><h2>تفويض المهام</h2><p>المهمة ← الموظف، ثم تنتقل تلقائياً إلى «أنجزت» عند وضع ✓.</p></div>
+        <div>
+          <h2>تفويض المهام</h2>
+          <p>كل موظف له مهامه وإنجازاته بشكل مستقل.</p>
+        </div>
         <span class="spacer"></span>
         <button class="btn" data-action="open-full-delegate">＋ تفويض مفصل</button>
       </div>
+
       ${delegationQuickForm(false)}
-      <div class="delegate-tracks">
-        <section class="delegate-track open">
-          <div class="delegate-track-head"><h3>تم التفويض</h3><span>${open.length}</span></div>
-          <div class="task-list drop-zone" data-drop-type="delegated">${open.length?open.map(t=>delegatedTrackRow(t,false)).join(""):`<div class="empty">لا توجد مهام مفوّضة مفتوحة.</div>`}</div>
-        </section>
-        <section class="delegate-track done">
-          <div class="delegate-track-head"><h3>أنجزت</h3><span>${done.length}</span></div>
-          <div class="task-list">${done.length?done.map(t=>delegatedTrackRow(t,true)).join(""):`<div class="empty">لم يتم إنجاز مهام مفوّضة بعد.</div>`}</div>
-        </section>
+
+      <div class="delegated-employee-groups">
+        ${groups.length?groups.map(({p,index,open,done})=>`
+          <section class="delegated-employee-group tone-${index%4}">
+            <div class="delegated-employee-head">
+              <div class="delegated-employee-name">
+                <span class="delegated-employee-avatar">${esc((p.name||"•")[0])}</span>
+                <div>
+                  <h3>${esc(p.name)}</h3>
+                  <p>${esc(p.specialty||"بدون تخصص")}</p>
+                </div>
+              </div>
+              <div class="delegated-employee-stats">
+                <span>${open.length} مفتوحة</span>
+                <span>${done.length} منجزة</span>
+              </div>
+              <button class="delegated-person-add" data-action="add-delegated-task" data-person="${esc(p.name)}" title="إضافة مهمة مفوّضة">＋</button>
+            </div>
+
+            <div class="delegated-employee-tracks">
+              <section class="delegate-track open">
+                <div class="delegate-track-head"><h3>المهام المفوّضة</h3><span>${open.length}</span></div>
+                <div class="task-list drop-zone" data-drop-type="delegated">
+                  ${open.length?open.map(t=>delegatedTrackRow(t,false)).join(""):`<div class="empty">لا توجد مهام مفتوحة.</div>`}
+                </div>
+              </section>
+
+              <section class="delegate-track done">
+                <div class="delegate-track-head"><h3>الإنجازات</h3><span>${done.length}</span></div>
+                <div class="task-list">
+                  ${done.length?done.map(t=>delegatedTrackRow(t,true)).join(""):`<div class="empty">لا توجد إنجازات بعد.</div>`}
+                </div>
+              </section>
+            </div>
+          </section>
+        `).join(""):`<div class="empty">لا توجد أسماء أو مهام مفوّضة حتى الآن.</div>`}
       </div>
     </section>
   </div>`
 }
-
 function renderCustomizer(){
   const pages=read().customPages;
   const tones=["tone-a","tone-b","tone-c","tone-d"];
@@ -5573,14 +7298,40 @@ function openEmployeeTaskModal(eid,t=null,preset="urgent"){
 /* ---------- Drag binding ---------- */
 function bindDrag(){
   $$(".task[draggable='true'], .delegate-home-row[draggable='true']").forEach(el=>{
+    el.dataset.dragArmed="0";
+
+    el.querySelectorAll(".drag-handle,.pinned-drag-handle").forEach(handle=>{
+      handle.addEventListener("pointerdown",()=>{
+        el.dataset.dragArmed="1";
+      });
+      handle.addEventListener("mousedown",()=>{
+        el.dataset.dragArmed="1";
+      });
+    });
+
     el.addEventListener("dragstart",ev=>{
+      if(el.dataset.dragArmed!=="1"){
+        ev.preventDefault();
+        return;
+      }
+
       el.classList.add("dragging");
       if(el.dataset.taskId)dragPayload={kind:"task",id:el.dataset.taskId};
       else if(el.dataset.employeeTask)dragPayload={kind:"employee",id:el.dataset.employeeTask,employee:el.dataset.employeeId};
       else if(el.dataset.customTask)dragPayload={kind:"custom",id:el.dataset.customTask,page:el.dataset.customPage,section:el.dataset.customSection};
       ev.dataTransfer.effectAllowed="move"
     });
-    el.addEventListener("dragend",()=>{el.classList.remove("dragging");dragPayload=null;$$(".drag-over").forEach(x=>x.classList.remove("drag-over"))})
+
+    const clearDrag=()=>{
+      el.dataset.dragArmed="0";
+      el.classList.remove("dragging");
+      dragPayload=null;
+      $$(".drag-over").forEach(x=>x.classList.remove("drag-over"));
+    };
+
+    el.addEventListener("dragend",clearDrag);
+    el.addEventListener("pointerup",()=>{if(!el.classList.contains("dragging"))el.dataset.dragArmed="0"});
+    el.addEventListener("pointercancel",()=>{el.dataset.dragArmed="0"});
   });
   $$(".drop-zone").forEach(z=>{
     z.addEventListener("dragover",ev=>{if(dragPayload?.kind==="task"){ev.preventDefault();z.classList.add("drag-over")}});
@@ -5591,27 +7342,58 @@ function bindDrag(){
     })
   });
 
-  $$(".pinned-drop-zone").forEach(z=>{
-    z.addEventListener("dragover",ev=>{
-      if(dragPayload?.kind==="task"){
-        const dragged=tasks().find(t=>t.id===dragPayload.id);
-        if(dragged?.pinned){
-          ev.preventDefault();
-          z.classList.add("drag-over");
-        }
-      }
-    });
-    z.addEventListener("dragleave",()=>z.classList.remove("drag-over"));
-    z.addEventListener("drop",ev=>{
+  $$(".pinned-drag-handle").forEach(handle=>{
+    const taskEl=handle.closest("[data-task-id]");
+    if(!taskEl)return;
+    const id=taskEl.dataset.taskId;
+    let active=false;
+    let targetId=null;
+
+    const clear=()=>{
+      active=false;
+      targetId=null;
+      taskEl.classList.remove("dragging");
+      $$(".pinned-task.drag-target").forEach(x=>x.classList.remove("drag-target"));
+      document.body.classList.remove("pinned-pointer-dragging");
+    };
+
+    handle.addEventListener("pointerdown",ev=>{
+      if(ev.button!==undefined&&ev.button!==0)return;
+      active=true;
+      taskEl.classList.add("dragging");
+      document.body.classList.add("pinned-pointer-dragging");
+      try{handle.setPointerCapture(ev.pointerId)}catch{}
       ev.preventDefault();
-      z.classList.remove("drag-over");
-      if(dragPayload?.kind!=="task")return;
-      const dragged=tasks().find(t=>t.id===dragPayload.id);
-      if(!dragged?.pinned)return;
-      const target=ev.target.closest("[data-task-id]");
-      reorderPinnedTask(dragPayload.id,target?.dataset.taskId||null);
     });
+
+    handle.addEventListener("pointermove",ev=>{
+      if(!active)return;
+      const under=document.elementFromPoint(ev.clientX,ev.clientY);
+      const target=under?.closest(".pinned-task[data-task-id]");
+      $$(".pinned-task.drag-target").forEach(x=>x.classList.remove("drag-target"));
+      if(target&&target.dataset.taskId!==id){
+        targetId=target.dataset.taskId;
+        target.classList.add("drag-target");
+      }else{
+        targetId=null;
+      }
+      ev.preventDefault();
+    });
+
+    const finish=ev=>{
+      if(!active)return;
+      const under=document.elementFromPoint(ev.clientX,ev.clientY);
+      const target=under?.closest(".pinned-task[data-task-id]");
+      const before=target&&target.dataset.taskId!==id?target.dataset.taskId:targetId;
+      clear();
+      reorderPinnedTask(id,before||null);
+      ev.preventDefault();
+    };
+
+    handle.addEventListener("pointerup",finish);
+    handle.addEventListener("pointercancel",clear);
   });
+
   $$(".employee-drop").forEach(z=>{
     z.addEventListener("dragover",ev=>{if(dragPayload?.kind==="employee"&&dragPayload.employee===z.dataset.employeeId){ev.preventDefault();z.classList.add("drag-over")}});
     z.addEventListener("dragleave",()=>z.classList.remove("drag-over"));
@@ -5720,7 +7502,7 @@ document.addEventListener("click",e=>{
     render();
     setTimeout(()=>{
       const el=document.querySelector(`[data-done-type="${doneSource}"]`);
-      el?.scrollIntoView({behavior:"smooth",block:"start"});
+      el?.scrollIntoView({behavior:"auto",block:"start"});
     },30);
     return
   }
@@ -5736,7 +7518,7 @@ document.addEventListener("click",e=>{
   }
   if(action==="add-delegate-person"){
     const name=$("#newDelegateName")?.value.trim();
-    if(name){mutate(d=>{if(!d.delegates.some(p=>p.name===name)&&!d.employees.some(e=>e.name===name))d.delegates.push({id:uid(),name,specialty:"",createdAt:Date.now()})});showToast("تمت إضافة الشخص")}
+    if(name){mutate(d=>{if(!d.delegates.some(p=>p.name===name)&&!d.employees.some(e=>e.name===name))d.delegates.push({id:uid(),name,specialty:"",createdAt:Date.now()})});showToast("تمت إضافة الموظف")}
   }
   if(action==="add-delegated-task"){
     openTaskModal(null,"delegated");
@@ -5754,6 +7536,13 @@ document.addEventListener("click",e=>{
     mutate(d=>d.reminders=d.reminders.filter(r=>r.id!==a.dataset.id));
     showToast("تم حذف التذكير");
   }
+  if(action==="delete-all-reminders"){
+    if(confirm("هل تريدين حذف جميع التذكيرات؟")){
+      mutate(d=>{d.reminders=[]});
+      showToast("تم حذف جميع التذكيرات");
+    }
+    return
+  }
   if(action==="enable-notifications")requestNotifications();
   if(action==="cal-prev"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()-1,1);render()}
   if(action==="cal-next"){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+1,1);render()}
@@ -5762,7 +7551,7 @@ document.addEventListener("click",e=>{
     $$("#reminderCombinedList [data-list-date]").forEach(row=>row.classList.toggle("calendar-focused",row.dataset.listDate===date));
     const first=document.querySelector(`#reminderCombinedList [data-list-date="${date}"]`);
     if(first){
-      first.scrollIntoView({behavior:"smooth",block:"center"});
+      first.scrollIntoView({behavior:"auto",block:"center"});
       showToast("تم تحديد عناصر هذا اليوم في القائمة");
     }else{
       showToast("لا توجد عناصر لهذا اليوم");
@@ -5777,10 +7566,20 @@ document.addEventListener("click",e=>{
     const emp=employeeData(a.dataset.id);
     if(emp){$("#employeeModalTitle").textContent="تعديل الموظف";$("#employeeId").value=emp.id;$("#employeeName").value=emp.name||"";$("#employeeSpecialty").value=emp.specialty||"";$("#employeeModal").hidden=false}
   }
-  if(action==="jump-employee"){document.getElementById(`employee-${a.dataset.id}`)?.scrollIntoView({behavior:"smooth",block:"start"})}
+  if(action==="jump-employee"){document.getElementById(`employee-${a.dataset.id}`)?.scrollIntoView({behavior:"auto",block:"start"})}
   if(action==="select-employee"){selectedEmployeeId=a.dataset.id;render()}
   if(action==="add-employee-task")openEmployeeTaskModal(a.dataset.employee,null,a.dataset.type||"urgent");
   if(action==="edit-employee-task"){const emp=employeeData(a.dataset.employee);const t=emp?.tasks.find(x=>x.id===a.dataset.id);if(t)openEmployeeTaskModal(a.dataset.employee,t)}
+  if(action==="toggle-staff-quick"){staffQuickOpen=!staffQuickOpen;render();return}
+  if(action==="complete-employee-home-task"){
+    mutate(d=>{
+      const emp=d.employees.find(x=>x.id===a.dataset.employee);
+      const t=emp?.tasks.find(x=>x.id===a.dataset.id);
+      if(t){t.done=true;t.sent=true;t.completedAt=Date.now();t.updatedAt=Date.now()}
+    });
+    showToast("تم نقل المهمة إلى المنجزة");
+    return
+  }
   if(action==="toggle-employee-task")mutate(d=>{
     const emp=d.employees.find(x=>x.id===a.dataset.employee);
     const t=emp?.tasks.find(x=>x.id===a.dataset.id);
