@@ -5494,6 +5494,335 @@ html[data-theme="dark"] .site-footer span:first-child{
   color:#F5F8FA!important;
 }
 
+
+/* =========================================================
+   FIX — تفويض الجوال + حقول الوضع الداكن
+   ========================================================= */
+
+/* تفويض الرئيسية:
+   بصرياً من اليمين لليسار = المهمة | الموظف | + */
+.card[data-tone="delegate"] .quick-delegate.compact{
+  direction:ltr!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(92px,.62fr) minmax(0,1.55fr)!important;
+  grid-template-areas:"add employee task"!important;
+  gap:6px!important;
+  align-items:center!important;
+  width:100%!important;
+  min-width:0!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact input[name="title"]{
+  grid-area:task!important;
+  direction:rtl!important;
+  text-align:right!important;
+  min-width:0!important;
+  width:100%!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact input[name="person"]{
+  grid-area:employee!important;
+  direction:rtl!important;
+  text-align:right!important;
+  min-width:0!important;
+  width:100%!important;
+}
+.card[data-tone="delegate"] .quick-delegate.compact .delegate-quick-plus{
+  grid-area:add!important;
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  padding:0!important;
+  margin:0!important;
+  place-self:center!important;
+}
+
+/* نفس ترتيب التفويض في الصفحة الداخلية */
+.delegate-dashboard .quick-delegate{
+  direction:ltr!important;
+  display:grid!important;
+  grid-template-columns:38px minmax(110px,.68fr) minmax(0,1.55fr)!important;
+  grid-template-areas:"add employee task"!important;
+  gap:7px!important;
+  align-items:center!important;
+  width:100%!important;
+}
+.delegate-dashboard .quick-delegate input[name="title"]{
+  grid-area:task!important;
+  direction:rtl!important;
+  text-align:right!important;
+}
+.delegate-dashboard .quick-delegate input[name="person"]{
+  grid-area:employee!important;
+  direction:rtl!important;
+  text-align:right!important;
+}
+.delegate-dashboard .quick-delegate .delegate-quick-plus{
+  grid-area:add!important;
+  place-self:center!important;
+}
+
+/* على الجوال تبقى الثلاثة في سطر واحد بدون خروج من البطاقة */
+@media(max-width:650px){
+  .card[data-tone="delegate"] .quick-delegate.compact{
+    grid-template-columns:32px minmax(76px,.62fr) minmax(0,1.55fr)!important;
+    grid-template-areas:"add employee task"!important;
+    gap:5px!important;
+  }
+  .card[data-tone="delegate"] .quick-delegate.compact .delegate-quick-plus{
+    width:32px!important;
+    min-width:32px!important;
+    max-width:32px!important;
+    height:34px!important;
+    min-height:34px!important;
+    max-height:34px!important;
+  }
+
+  .delegate-dashboard .quick-delegate{
+    grid-template-columns:34px minmax(84px,.65fr) minmax(0,1.5fr)!important;
+    grid-template-areas:"add employee task"!important;
+    gap:5px!important;
+  }
+
+  .card[data-tone="delegate"] .quick-delegate.compact input,
+  .delegate-dashboard .quick-delegate input{
+    grid-row:auto!important;
+    height:34px!important;
+    min-height:34px!important;
+    padding-inline:7px!important;
+    font-size:16px!important; /* يمنع زوم Safari أثناء الكتابة */
+  }
+}
+
+/* الوضع الداكن: أي نص تتم كتابته يبقى واضحاً أثناء الكتابة */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select{
+  background:#24313A!important;
+  color:#F7FAFC!important;
+  border-color:#52616B!important;
+  caret-color:#F7FAFC!important;
+  -webkit-text-fill-color:#F7FAFC!important;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder{
+  color:#AEBBC4!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#AEBBC4!important;
+}
+html[data-theme="dark"] select option{
+  background:#24313A!important;
+  color:#F7FAFC!important;
+}
+
+/* الحقول الموجودة داخل البطاقات الزرقاء أيضاً تتبع الوضع الداكن */
+html[data-theme="dark"] .card input,
+html[data-theme="dark"] .card textarea,
+html[data-theme="dark"] .card select,
+html[data-theme="dark"] .quick-delegate input,
+html[data-theme="dark"] .staff-quick-form input,
+html[data-theme="dark"] .staff-quick-form select,
+html[data-theme="dark"] .search-drop input{
+  background:#26343E!important;
+  color:#FFFFFF!important;
+  border-color:#5B6C77!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+}
+html[data-theme="dark"] .card input::placeholder,
+html[data-theme="dark"] .quick-delegate input::placeholder,
+html[data-theme="dark"] .staff-quick-form input::placeholder,
+html[data-theme="dark"] .search-drop input::placeholder{
+  color:#B8C4CC!important;
+  opacity:1!important;
+  -webkit-text-fill-color:#B8C4CC!important;
+}
+
+/* Autofill في Chrome/Safari لا يقلب لون النص */
+html[data-theme="dark"] input:-webkit-autofill,
+html[data-theme="dark"] input:-webkit-autofill:hover,
+html[data-theme="dark"] input:-webkit-autofill:focus{
+  -webkit-text-fill-color:#FFFFFF!important;
+  box-shadow:0 0 0 1000px #26343E inset!important;
+  caret-color:#FFFFFF!important;
+}
+
+
+/* =========================================================
+   FINAL — pinned tool visibility + visible check states
+   ========================================================= */
+
+/* Pinned tools: larger symbols, same geometry, high contrast on every card color */
+.pinned-task-actions{
+  grid-auto-columns:30px!important;
+  grid-template-rows:30px!important;
+  column-gap:6px!important;
+}
+.pinned-task-actions>*,
+.pinned-task-actions .priority,
+.pinned-task-actions .task-reminder,
+.pinned-task-actions .pin-toggle,
+.pinned-task-actions .critical-toggle,
+.pinned-task-actions .task-edit-icon,
+.pinned-task-actions .quick-delete-task,
+.pinned-task-actions .pinned-check,
+.pinned-task-actions .pinned-drag-handle{
+  width:30px!important;
+  min-width:30px!important;
+  max-width:30px!important;
+  height:30px!important;
+  min-height:30px!important;
+  max-height:30px!important;
+  border-radius:8px!important;
+  border:1px solid rgba(25,61,87,.20)!important;
+  background:#FFFFFF!important;
+  color:#183F5F!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  display:grid!important;
+  place-items:center!important;
+  text-align:center!important;
+}
+.pinned-task-actions .priority{
+  font-size:10px!important;
+  letter-spacing:-.5px!important;
+  color:#214F73!important;
+}
+.pinned-task-actions .task-edit-icon{
+  font-size:16px!important;
+}
+.pinned-task-actions .pinned-drag-handle{
+  font-size:15px!important;
+}
+.pinned-task-actions .critical-toggle{
+  font-size:14px!important;
+}
+.pinned-task-actions .pin-toggle.active{
+  background:#DCECF7!important;
+  border-color:#9EC6DF!important;
+  color:#285F8C!important;
+}
+.pinned-task-actions .critical-toggle.active{
+  background:#A4475B!important;
+  border-color:#A4475B!important;
+  color:#FFFFFF!important;
+}
+.pinned-task-actions .priority:hover,
+.pinned-task-actions .task-reminder:hover,
+.pinned-task-actions .pin-toggle:hover,
+.pinned-task-actions .task-edit-icon:hover,
+.pinned-task-actions .pinned-drag-handle:hover{
+  background:#E5F1F8!important;
+  border-color:#8DB9D4!important;
+  color:#1C557E!important;
+}
+
+/* Task completion square:
+   a check is always visible; click changes the entire square color */
+.check,
+.pinned-check{
+  color:#7D929F!important;
+  background:#FFFFFF!important;
+  border:2px solid #B8C9D3!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  opacity:1!important;
+}
+.task.done>.check,
+.pinned-task.done .pinned-check{
+  background:#3674B5!important;
+  border-color:#3674B5!important;
+  color:#FFFFFF!important;
+}
+.card[data-tone="urgent"] .task.done>.check{
+  background:#214F7D!important;
+  border-color:#214F7D!important;
+}
+.card[data-tone="routine"] .task.done>.check{
+  background:#3674B5!important;
+  border-color:#3674B5!important;
+}
+.card[data-tone="week"] .task.done>.check{
+  background:#467FAF!important;
+  border-color:#467FAF!important;
+}
+.card[data-tone="delegate"] .task.done>.check{
+  background:#214F7D!important;
+  border-color:#214F7D!important;
+}
+
+/* Native square checks used by delegation and employee follow-up:
+   check glyph is visible even before selection, then changes color when selected. */
+.delegate-check input[type="checkbox"],
+.staff-state-check input[type="checkbox"]{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  width:17px!important;
+  height:17px!important;
+  min-width:17px!important;
+  min-height:17px!important;
+  margin:0!important;
+  border:1.5px solid #9EB4C3!important;
+  border-radius:5px!important;
+  background:#FFFFFF!important;
+  display:grid!important;
+  place-items:center!important;
+  cursor:pointer!important;
+}
+.delegate-check input[type="checkbox"]::after,
+.staff-state-check input[type="checkbox"]::after{
+  content:"✓";
+  color:#8094A1;
+  font-size:11px;
+  font-weight:900;
+  line-height:1;
+}
+.delegate-check input[type="checkbox"]:checked,
+.staff-state-check input[type="checkbox"]:checked{
+  background:#3674B5!important;
+  border-color:#3674B5!important;
+}
+.delegate-check input[type="checkbox"]:checked::after,
+.staff-state-check input[type="checkbox"]:checked::after{
+  color:#FFFFFF!important;
+}
+.delegate-check.complete input[type="checkbox"]:checked{
+  background:#578FCA!important;
+  border-color:#578FCA!important;
+}
+.staff-state-check.done-check input[type="checkbox"]:checked{
+  background:#2E78A8!important;
+  border-color:#2E78A8!important;
+}
+
+/* Dark mode keeps all tool symbols readable */
+html[data-theme="dark"] .pinned-task-actions>*,
+html[data-theme="dark"] .pinned-task-actions .priority,
+html[data-theme="dark"] .pinned-task-actions .task-reminder,
+html[data-theme="dark"] .pinned-task-actions .pin-toggle,
+html[data-theme="dark"] .pinned-task-actions .critical-toggle,
+html[data-theme="dark"] .pinned-task-actions .task-edit-icon,
+html[data-theme="dark"] .pinned-task-actions .pinned-drag-handle{
+  background:#F5F8FA!important;
+  color:#173F5E!important;
+  border-color:#AFC2CE!important;
+}
+html[data-theme="dark"] .pinned-task-actions .critical-toggle.active{
+  background:#A4475B!important;
+  color:#FFFFFF!important;
+  border-color:#A4475B!important;
+}
+html[data-theme="dark"] .pinned-task-actions .pin-toggle.active{
+  background:#BFDCEC!important;
+  color:#214F73!important;
+}
+html[data-theme="dark"] .delegate-check input[type="checkbox"],
+html[data-theme="dark"] .staff-state-check input[type="checkbox"]{
+  background:#F7FAFC!important;
+  border-color:#AFC0CB!important;
+}
+
 </style>
 </head>
 <body>
@@ -6022,7 +6351,7 @@ function taskCard(t,{draggable=true,quickDelete=false}={}){
 
       <div class="pinned-task-actions">
         <button class="pinned-drag-handle" type="button" data-pinned-drag="${esc(t.id)}" title="اسحبي لترتيب المهمة" aria-label="سحب المهمة">↕</button>
-        <button class="check pinned-check" data-action="toggle-task" data-id="${esc(t.id)}" title="${done?"إلغاء الإنجاز":"تم الإنجاز"}">${done?"✓":""}</button>
+        <button class="check pinned-check" data-action="toggle-task" data-id="${esc(t.id)}" title="${done?"إلغاء الإنجاز":"تم الإنجاز"}">✓</button>
         ${t.type==="urgent"?`<button class="priority pinned-control" data-action="cycle-priority" data-id="${esc(t.id)}" title="الأولوية">${priorityText(t.priority)}</button>`:""}
         ${t.type==="delegated"?`<button class="task-reminder pinned-control" data-action="task-reminder" data-id="${esc(t.id)}" title="إنشاء تذكير">◷</button>`:""}
         <button class="pin-toggle active pinned-control" data-action="toggle-pin" data-id="${esc(t.id)}" title="إلغاء التثبيت">⌖</button>
@@ -6035,7 +6364,7 @@ function taskCard(t,{draggable=true,quickDelete=false}={}){
 
   return `<article class="task ${done?"done":""} ${critical?"critical":""}" draggable="${draggable}" data-task-id="${esc(t.id)}" data-task-type="${esc(t.type)}">
     ${draggable?`<span class="drag-handle" title="اسحبي لترتيب المهمة">⋮⋮</span>`:""}
-    <button class="check" data-action="toggle-task" data-id="${esc(t.id)}">${done?"✓":""}</button>
+    <button class="check" data-action="toggle-task" data-id="${esc(t.id)}">✓</button>
     <div class="task-content" data-action="edit-task" data-id="${esc(t.id)}">
       ${t.type==="delegated"
         ?`<div class="delegation-route" dir="ltr"><span dir="rtl">${esc(t.title)}</span><b>→</b><span dir="rtl">${esc(t.person||"غير محدد")}</span></div>`
@@ -6407,7 +6736,7 @@ function employeeTaskCard(t,eid){
   const priority=Math.max(1,Math.min(3,Number(t.priority)||1));
   return `<article class="task ${t.done?"done":""}" draggable="true" data-employee-task="${esc(t.id)}" data-employee-id="${esc(eid)}">
     <span class="drag-handle">⋮⋮</span>
-    <button class="check" data-action="toggle-employee-task" data-id="${esc(t.id)}" data-employee="${esc(eid)}">${t.done?"✓":""}</button>
+    <button class="check" data-action="toggle-employee-task" data-id="${esc(t.id)}" data-employee="${esc(eid)}">✓</button>
     <div class="task-content" data-action="edit-employee-task" data-id="${esc(t.id)}" data-employee="${esc(eid)}">
       <div class="task-name">${esc(t.title)}</div>
       ${t.note?`<div class="task-note">${esc(t.note)}</div>`:""}
